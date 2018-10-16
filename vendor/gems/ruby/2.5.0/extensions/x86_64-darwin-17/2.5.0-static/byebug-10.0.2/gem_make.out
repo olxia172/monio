@@ -1,0 +1,19 @@
+current directory: /Users/aleksandra/Projects/monio/monio/vendor/gems/ruby/2.5.0/gems/byebug-10.0.2/ext/byebug
+/Users/aleksandra/.rbenv/versions/2.5.1/bin/ruby -r ./siteconf20181016-42052-1qw0jtj.rb extconf.rb
+creating Makefile
+
+current directory: /Users/aleksandra/Projects/monio/monio/vendor/gems/ruby/2.5.0/gems/byebug-10.0.2/ext/byebug
+make "DESTDIR=" clean
+
+current directory: /Users/aleksandra/Projects/monio/monio/vendor/gems/ruby/2.5.0/gems/byebug-10.0.2/ext/byebug
+make "DESTDIR="
+compiling breakpoint.c
+compiling byebug.c
+compiling context.c
+compiling locker.c
+compiling threads.c
+linking shared-object byebug/byebug.bundle
+
+current directory: /Users/aleksandra/Projects/monio/monio/vendor/gems/ruby/2.5.0/gems/byebug-10.0.2/ext/byebug
+make "DESTDIR=" install
+/usr/local/bin/ginstall -c -m 0755 byebug.bundle ./.gem.20181016-42052-mt9xrf/byebug
