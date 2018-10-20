@@ -1,4 +1,5 @@
+h1 Create new account
 = simple_form_for @account do |f|
   = f.input :name, required: true
-  = f.input :account_type, collection: Account.account_types.keys
-  = f.button :submit
+  = f.input :account_type, as: :radio_buttons, collection: Account.account_types.keys, required: true
+  = f.button :submit, class: 'btn btn-success'

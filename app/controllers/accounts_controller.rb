@@ -18,6 +18,12 @@ class AccountsController < ApplicationController
       flash.now.alert = "Something went wrong. Check if all fields are properly completed"
       render 'new'
     end
+
+    def show
+      @account = current_user.accounts.find(params[:id])
+
+      @operations = account.operations
+    end
   end
 
   private
