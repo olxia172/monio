@@ -1,0 +1,23 @@
+<% if flash[:alert] %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="alert alert-dismissible alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4 class="alert-heading">Warning!</h4>
+        <p class="mb-0"> <%= alert %> </p>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<% if flash[:notice] %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="alert alert-dismissible alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4 class="alert-heading">Success!</h4>
+        <p class="mb-0"> <%= notice %> </p>
+      </div>
+    </div>
+  </div>
+<% end %>
