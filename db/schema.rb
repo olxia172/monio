@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2018_10_20_175254) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "type", default: 0, null: false
+    t.integer "account_type", default: 0, null: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 2018_10_20_175254) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.integer "type", null: false
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -34,7 +33,7 @@ ActiveRecord::Schema.define(version: 2018_10_20_175254) do
   create_table "operations", force: :cascade do |t|
     t.bigint "value", null: false
     t.text "comment"
-    t.integer "type", default: 0, null: false
+    t.integer "operation_type", default: 0, null: false
     t.bigint "user_id"
     t.bigint "source_account"
     t.bigint "target_account"

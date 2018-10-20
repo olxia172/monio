@@ -1,0 +1,13 @@
+h1 Your accounts
+table.table
+  thead
+    tr
+      th scope="col"  Name
+      th scope="col"  Type
+      th scope="col"  Balance
+  tbody
+    - @accounts.each do |account|
+      tr
+        td = account.name
+        td = account.account_type
+        td Blank
