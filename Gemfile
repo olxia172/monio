@@ -37,6 +37,7 @@ gem 'bootstrap', '~> 4.1.3'
 gem 'devise'
 gem 'jquery-rails'
 gem 'money-rails', '~>1'
+gem 'simple_form'
 gem "slim-rails"
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 
