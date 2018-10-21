@@ -26,6 +26,12 @@ class OperationsController < ApplicationController
   def show; end
 
   def update
+    if @operation.update(operation_params)
+      redirect_to account_path(@operation.source_account), notice: 'You successfully created operation'
+    else
+      flash.now.alert = 'Something went wrong. Check if all fields are properly completed'
+      render 'edit'
+    end
   end
 
   def destroy

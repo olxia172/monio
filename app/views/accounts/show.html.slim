@@ -1,3 +1,18 @@
 h1 = @account.name
 
 = link_to 'Update account', edit_account_path(@account)
+= link_to 'New operation', new_operation_path
+
+table.table.table-hover
+  thead
+    tr
+      th scope="col"  Category
+      th scope="col"  Amount
+      th scope="col"  Actions
+  tbody
+    - @operations.each do |operation|
+      tr
+        td = operation.category.name
+        td = operation.value
+        td
+          = link_to 'Edit', edit_operation_path(operation)

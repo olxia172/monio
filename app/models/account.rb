@@ -6,4 +6,8 @@ class Account < ApplicationRecord
   has_many :incomes, class_name: 'Operation', foreign_key: 'target_account_id'
 
   validates :name, presence: true
+
+  def operations
+    Operation.where('operations.source_account_id = ? OR operations.target_account_id = ?', self.id, self.id)
+  end
 end
