@@ -1,0 +1,10 @@
+h1 Add new operation
+
+= simple_form_for @operation do |f|
+  = f.input :value, required: true
+  = f.input :operation_type, collection: Operation.operation_types.keys, required: true
+  = f.association :category
+  = f.association :source_account
+  = f.association :target_account
+  = f.input :comment
+  = f.button :submit, class: 'btn btn-success'

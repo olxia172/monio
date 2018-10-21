@@ -35,10 +35,14 @@ ActiveRecord::Schema.define(version: 2018_10_20_175254) do
     t.text "comment"
     t.integer "operation_type", default: 0, null: false
     t.bigint "user_id"
-    t.bigint "source_account"
-    t.bigint "target_account"
+    t.bigint "source_account_id"
+    t.bigint "target_account_id"
+    t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_operations_on_category_id"
+    t.index ["source_account_id"], name: "index_operations_on_source_account_id"
+    t.index ["target_account_id"], name: "index_operations_on_target_account_id"
     t.index ["user_id"], name: "index_operations_on_user_id"
   end
 
@@ -55,5 +59,7 @@ ActiveRecord::Schema.define(version: 2018_10_20_175254) do
   end
 
   add_foreign_key "accounts", "users"
+  add_foreign_key "operations", "accounts", column: "source_account_id"
+  add_foreign_key "operations", "accounts", column: "target_account_id"
   add_foreign_key "operations", "users"
 end

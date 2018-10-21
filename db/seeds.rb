@@ -8,7 +8,7 @@
 
 categories = ['Food', 'Bills - home', 'Bills - work', 'Bills - other',
  'Electronics', 'Cosmetics', 'Other', 'Home supplies',
- 'Clothes', 'Cat']
+ 'Clothes', 'Cat', 'Savings']
 
 categories.each do |cat|
   Category.create(name: cat)
