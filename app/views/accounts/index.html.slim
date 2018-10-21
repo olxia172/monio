@@ -12,7 +12,7 @@ table.table.table-hover
       tr
         td = account.name
         td = account.account_type
-        td Blank
+        td = account.balance
         td
           = link_to 'View', account_path(account)
           = ' | '

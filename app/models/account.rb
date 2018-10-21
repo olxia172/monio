@@ -5,6 +5,8 @@ class Account < ApplicationRecord
   has_many :expenses, class_name: 'Operation', foreign_key: 'source_account_id'
   has_many :incomes, class_name: 'Operation', foreign_key: 'target_account_id'
 
+  monetize :balance_cents
+
   validates :name, presence: true
 
   def operations
