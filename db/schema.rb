@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_20_175254) do
+ActiveRecord::Schema.define(version: 2018_10_21_175116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(version: 2018_10_20_175254) do
   end
 
   create_table "operations", force: :cascade do |t|
-    t.bigint "value", null: false
     t.text "comment"
     t.integer "operation_type", default: 0, null: false
     t.bigint "user_id"
@@ -40,6 +39,8 @@ ActiveRecord::Schema.define(version: 2018_10_20_175254) do
     t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "value_cents", default: 0, null: false
+    t.string "value_currency", default: "PLN", null: false
     t.index ["category_id"], name: "index_operations_on_category_id"
     t.index ["source_account_id"], name: "index_operations_on_source_account_id"
     t.index ["target_account_id"], name: "index_operations_on_target_account_id"

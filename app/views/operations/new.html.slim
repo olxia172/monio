@@ -1,7 +1,7 @@
 h1 Add new operation
 
 = simple_form_for @operation do |f|
-  = f.input :value, required: true
+  = f.input :value
   = f.input :operation_type, collection: Operation.operation_types.keys, required: true
   = f.association :category
   = f.association :source_account
