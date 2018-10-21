@@ -1,0 +1,19 @@
+h1 Your accounts
+= link_to 'Add new account', new_account_path, class: 'btn btn-outline-primary'
+table.table.table-hover
+  thead
+    tr
+      th scope="col"  Name
+      th scope="col"  Type
+      th scope="col"  Balance
+      th scope="col"  Actions
+  tbody
+    - @accounts.each do |account|
+      tr
+        td = account.name
+        td = account.account_type
+        td Blank
+        td
+          = link_to 'View', account_path(account)
+          = ' | '
+          = link_to 'Edit', edit_account_path(account)

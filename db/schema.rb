@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_20_175254) do
+ActiveRecord::Schema.define(version: 2018_10_21_175116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "accounts", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "type", default: 0, null: false
+    t.integer "account_type", default: 0, null: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -25,21 +25,25 @@ ActiveRecord::Schema.define(version: 2018_10_20_175254) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.integer "type", null: false
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "operations", force: :cascade do |t|
-    t.bigint "value", null: false
     t.text "comment"
-    t.integer "type", default: 0, null: false
+    t.integer "operation_type", default: 0, null: false
     t.bigint "user_id"
-    t.bigint "source_account"
-    t.bigint "target_account"
+    t.bigint "source_account_id"
+    t.bigint "target_account_id"
+    t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "value_cents", default: 0, null: false
+    t.string "value_currency", default: "PLN", null: false
+    t.index ["category_id"], name: "index_operations_on_category_id"
+    t.index ["source_account_id"], name: "index_operations_on_source_account_id"
+    t.index ["target_account_id"], name: "index_operations_on_target_account_id"
     t.index ["user_id"], name: "index_operations_on_user_id"
   end
 
@@ -56,5 +60,7 @@ ActiveRecord::Schema.define(version: 2018_10_20_175254) do
   end
 
   add_foreign_key "accounts", "users"
+  add_foreign_key "operations", "accounts", column: "source_account_id"
+  add_foreign_key "operations", "accounts", column: "target_account_id"
   add_foreign_key "operations", "users"
 end
