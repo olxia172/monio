@@ -9,15 +9,11 @@ table.table.table-hover
       th scope="col"  Actions
   tbody
     - @accounts.each do |account|
-      - if account.account_type == 'standard'
-        tr.table-primary
-          td = account.name
-          td = account.account_type
-          td Blank
-          td = link_to 'View', account_path(account)
-      - else
-        tr.table-success
-          td = account.name
-          td = account.account_type
-          td Blank
-          td = link_to 'View', account_path(account)
+      tr
+        td = account.name
+        td = account.account_type
+        td Blank
+        td
+          = link_to 'View', account_path(account)
+          = ' | '
+          = link_to 'Edit', edit_account_path(account)
