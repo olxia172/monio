@@ -4,7 +4,7 @@ h1 Add new operation
   = f.input :value
   = f.input :operation_type, collection: Operation.operation_types.keys, required: true
   = f.association :category
-  = f.association :source_account
-  = f.association :target_account
+  = f.association :account
+  = f.input :target_account, collection: current_user.accounts
   = f.input :comment
   = f.button :submit, class: 'btn btn-success'
