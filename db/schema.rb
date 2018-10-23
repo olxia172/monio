@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_21_184309) do
+ActiveRecord::Schema.define(version: 2018_10_22_195734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,16 +36,16 @@ ActiveRecord::Schema.define(version: 2018_10_21_184309) do
     t.text "comment"
     t.integer "operation_type", default: 0, null: false
     t.bigint "user_id"
-    t.bigint "source_account_id"
-    t.bigint "target_account_id"
+    t.bigint "account_id"
     t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "value_cents", default: 0, null: false
     t.string "value_currency", default: "PLN", null: false
+    t.bigint "operation_id"
+    t.index ["account_id"], name: "index_operations_on_account_id"
     t.index ["category_id"], name: "index_operations_on_category_id"
-    t.index ["source_account_id"], name: "index_operations_on_source_account_id"
-    t.index ["target_account_id"], name: "index_operations_on_target_account_id"
+    t.index ["operation_id"], name: "index_operations_on_operation_id"
     t.index ["user_id"], name: "index_operations_on_user_id"
   end
 
@@ -62,7 +62,4 @@ ActiveRecord::Schema.define(version: 2018_10_21_184309) do
   end
 
   add_foreign_key "accounts", "users"
-  add_foreign_key "operations", "accounts", column: "source_account_id"
-  add_foreign_key "operations", "accounts", column: "target_account_id"
-  add_foreign_key "operations", "users"
 end
