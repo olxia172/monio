@@ -1,0 +1,19 @@
+h1 Listing budgets
+
+table
+  thead
+    tr
+      th
+      th
+      th
+
+  tbody
+    - @budgets.each do |budget|
+      tr
+        td = link_to 'Show', budget
+        td = link_to 'Edit', edit_budget_path(budget)
+        td = link_to 'Destroy', budget, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Budget', new_budget_path
