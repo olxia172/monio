@@ -11,7 +11,7 @@ class Account < ApplicationRecord
 
   def balance_value
     if balance_cents < 0
-      errors.add(:balance_cents, "can't be negative")
+      errors.add(:balance_cents, "you don't have enough funds on your account")
     end
   end
 end
