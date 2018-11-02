@@ -24,7 +24,7 @@ class AccountsController < ApplicationController
   end
 
   def show
-    @operations = @account.operations
+    @operations = @account.operations.order(created_at: :desc)
   end
 
   def update

@@ -26,9 +26,20 @@ class OperationsController < ApplicationController
   def show; end
 
   def update
+    if @operation.update(operation_params)
+      redirect_to account_path(@operation.source_account), notice: 'You successfully created operation'
+    else
+      flash.now.alert = 'Something went wrong. Check if all fields are properly completed'
+      render 'edit'
+    end
   end
 
   def destroy
+    if @operation.destroy
+      redirect_to operations_path, notice: 'You successfully deleted operation'
+    else
+      flash.now.alert = 'Something went wrong. Check if all fields are properly completed'
+    end
   end
 
   private
@@ -38,6 +49,6 @@ class OperationsController < ApplicationController
   end
 
   def operation_params
-    params.require(:operation).permit(:value, :operation_type, :category_id, :source_account_id, :target_account_id, :comment)
+    params.require(:operation).permit(:value, :operation_type, :category_id, :account_id, :target_account, :comment)
   end
 end

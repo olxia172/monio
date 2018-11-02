@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :account do
-    name { "MyString" }
-    type { 1 }
-    user { "" }
+    name { "My account" }
+    account_type { 0 }
+    user
   end
 end

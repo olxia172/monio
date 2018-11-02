@@ -12,11 +12,17 @@
   <body>
     <%= render 'common/navbar' %>
     <div class="container-fluid">
-      <div class="row justify-content-md-center">
-        <div class="col-md-12"><%= render 'common/flash_messages' %></div>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          <%= render 'common/flash_messages' %>
+        </div>
+        <div class="col-md-1"></div>
       </div>
       <div class="row">
-        <div class="col-md-10 col-md-offset-1"><%= yield %></div>
+        <div class="col-md-1"></div>
+        <div class="col-md-10"><%= yield %></div>
+        <div class="col-md-1"></div>
       </div>
     </div>
   </body>

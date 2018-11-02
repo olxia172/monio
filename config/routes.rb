@@ -6,4 +6,5 @@ Rails.application.routes.draw do
 
   resources :accounts
   resources :operations
+  resources :categories, only: [:new, :create]
 end

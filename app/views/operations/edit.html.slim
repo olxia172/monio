@@ -1,2 +1,10 @@
-h1 Operations#edit
-p Find me in app/views/operations/edit.html.slim
+h1 Edit operation
+
+= simple_form_for @operation do |f|
+  = f.input :value
+  = f.input :operation_type, collection: Operation.operation_types.keys, required: true
+  = f.association :category
+  = f.association :account
+  = f.input :target_account, collection: current_user.accounts
+  = f.input :comment
+  = f.button :submit, class: 'btn btn-success'
