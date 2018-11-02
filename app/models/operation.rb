@@ -11,10 +11,25 @@ class Operation < ApplicationRecord
 
   monetize :value_cents
 
+  validate :transfer_type_if_target_account_present,
+           :target_account_if_transfer_type
+
   after_validation :create_associated_operation
   after_create :set_proper_value, :update_account_balance
   before_destroy :remember_operation_value, :remember_account
   after_destroy :restore_balance
+
+  def transfer_type_if_target_account_present
+    if target_account.present?
+      errors.add(:operation_type, "should be transfer type") unless transfer?
+    end
+  end
+
+  def target_account_if_transfer_type
+    if transfer?
+      errors.add(:target_account, "should be present") unless target_account.present?
+    end
+  end
 
   def create_associated_operation
     if transfer? && target_account.present?
@@ -23,6 +38,7 @@ class Operation < ApplicationRecord
                             operation_type: :income,
                             value_cents: value_cents,
                             user: user)
+      self.target_account = nil
       self.expense!
     end
   end
