@@ -8,11 +8,15 @@ table.table.table-hover
     tr
       th scope="col"  Category
       th scope="col"  Amount
+      th scope="col"  Comment
       th scope="col"  Actions
   tbody
     - @operations.each do |operation|
       tr
-        td = operation.category.name
+        td = operation.category&.name
         td = operation.value
+        td = operation.comment
         td
           = link_to 'Edit', edit_operation_path(operation)
+          = ' | '
+          = link_to 'Delete', operation_path(operation), method: :delete

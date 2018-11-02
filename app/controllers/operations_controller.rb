@@ -3,11 +3,15 @@ class OperationsController < ApplicationController
   before_action :set_operation, only: [:show, :edit, :update, :destroy]
 
   def index
-    @operations = current_user.operations
+    @operations = current_user.operations.includes(:category).order(created_at: :asc)
+
+    if params[:sort_by_category].present?
+      @operations = @operations.where(category_id: params[:sort_by_category])
+    end
   end
 
   def new
-    @operation = Operation.new
+    @operation = Operation.new(account: current_user.accounts.most_active)
   end
 
   def create
@@ -27,7 +31,7 @@ class OperationsController < ApplicationController
 
   def update
     if @operation.update(operation_params)
-      redirect_to account_path(@operation.source_account), notice: 'You successfully created operation'
+      redirect_to operations_path, notice: 'You successfully updated operation'
     else
       flash.now.alert = 'Something went wrong. Check if all fields are properly completed'
       render 'edit'
