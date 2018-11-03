@@ -1,20 +1,21 @@
-h1 Operations
-
-table.table.table-hover
-  thead
-    tr
-      th scope="col" = sort_link(@q, :category_name, 'Category')
-      th scope="col" = sort_link(@q, :value_cents, 'Amount')
-      th scope="col"  Comment
-      th scope="col"  Actions
-  tbody
-    - @operations.each do |operation|
+div.operations
+  h1 Operations
+div
+  table.table.table-hover
+    thead
       tr
-        td
-          = link_to "#{operation.category&.name}", operations_path(q: { category_id_eq: operation.category&.id })
-        td = operation.value
-        td = operation.comment
-        td
-          = link_to 'Edit', edit_operation_path(operation)
-          = ' | '
-          = link_to 'Delete', operation_path(operation), method: :delete
+        th scope="col" = sort_link(@q, :category_name, 'Category')
+        th scope="col" = sort_link(@q, :value_cents, 'Amount')
+        th scope="col"  Comment
+        th scope="col"  Actions
+    tbody
+      - @operations.each do |operation|
+        tr
+          td
+            = link_to "#{operation.category&.name}", operations_path(q: { category_id_eq: operation.category&.id })
+          td = operation.value
+          td = operation.comment
+          td
+            = link_to 'Edit', edit_operation_path(operation)
+            = ' | '
+            = link_to 'Delete', operation_path(operation), method: :delete
