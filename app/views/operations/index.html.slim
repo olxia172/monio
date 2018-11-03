@@ -7,15 +7,15 @@ div
         th scope="col" = sort_link(@q, :category_name, 'Category')
         th scope="col" = sort_link(@q, :value_cents, 'Amount')
         th scope="col"  Comment
-        th scope="col"  Actions
+        th scope="col" style='width: 20%'  Actions
     tbody
       - @operations.each do |operation|
         tr
           td
             = link_to "#{operation.category&.name}", operations_path(q: { category_id_eq: operation.category&.id })
-          td = operation.value
+          td class="#{operation.operation_type}"
+            = operation.value
           td = operation.comment
           td
-            = link_to 'Edit', edit_operation_path(operation)
-            = ' | '
-            = link_to 'Delete', operation_path(operation), method: :delete
+            = link_to 'Edit', edit_operation_path(operation), class: 'btn btn-success'
+            = link_to 'Delete', operation_path(operation), method: :delete, class: 'btn btn-danger'

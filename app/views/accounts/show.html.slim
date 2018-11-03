@@ -12,12 +12,21 @@ table.table.table-hover
       th scope="col"  Actions
   tbody
     - @operations.each do |operation|
-      tr
-        td
-          = link_to "#{operation.category&.name}", account_path(@account, q: { category_id_eq: operation.category&.id })
-        td = operation.value
-        td = operation.comment
-        td
-          = link_to 'Edit', edit_operation_path(operation)
-          = ' | '
-          = link_to 'Delete', operation_path(operation), method: :delete
+      - if operation.expense?
+        tr.table-danger
+          td
+            = link_to "#{operation.category&.name}", account_path(@account, q: { category_id_eq: operation.category&.id })
+          td = operation.value
+          td = operation.comment
+          td
+            = link_to 'Edit', edit_operation_path(operation), class: 'btn btn-success btn-space'
+            = link_to 'Delete', operation_path(operation), method: :delete, class: 'btn btn-danger btn-space'
+      - else
+        tr.table-success
+          td
+            = link_to "#{operation.category&.name}", account_path(@account, q: { category_id_eq: operation.category&.id })
+          td = operation.value
+          td = operation.comment
+          td
+            = link_to 'Edit', edit_operation_path(operation), class: 'btn btn-success btn-space'
+            = link_to 'Delete', operation_path(operation), method: :delete, class: 'btn btn-danger btn-space'
