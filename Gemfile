@@ -34,10 +34,13 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.1.3'
+gem 'bootstrap_form'
+gem 'bootstrap4-kaminari-views'
 gem 'devise'
 gem 'devise-i18n'
 gem 'devise-bootstrap-views', '~> 1.0'
 gem 'jquery-rails'
+gem 'kaminari'
 gem 'money-rails', '~> 1.12'
 gem 'simple_form'
 gem "slim-rails"

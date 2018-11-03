@@ -1,6 +1,8 @@
 class Operation < ApplicationRecord
   attr_accessor :target_account
 
+  paginates_per 50
+
   enum operation_type: { expense: 0, income: 1, transfer: 2 }
 
   belongs_to :account
