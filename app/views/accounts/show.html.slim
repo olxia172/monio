@@ -1,32 +1,36 @@
-h1 = @account.name
-
-= link_to 'Update account', edit_account_path(@account)
-= link_to 'New operation', new_operation_path
-
-table.table.table-hover
-  thead
-    tr
-      th scope="col" = sort_link(@q, :category_name, 'Category')
-      th scope="col" = sort_link(@q, :value_cents, 'Amount')
-      th scope="col"  Comment
-      th scope="col"  Actions
-  tbody
-    - @operations.each do |operation|
-      - if operation.expense?
-        tr.table-danger
-          td
-            = link_to "#{operation.category&.name}", account_path(@account, q: { category_id_eq: operation.category&.id })
-          td = operation.value
-          td = operation.comment
-          td
-            = link_to 'Edit', edit_operation_path(operation), class: 'btn btn-success btn-space'
-            = link_to 'Delete', operation_path(operation), method: :delete, class: 'btn btn-danger btn-space'
-      - else
-        tr.table-success
-          td
-            = link_to "#{operation.category&.name}", account_path(@account, q: { category_id_eq: operation.category&.id })
-          td = operation.value
-          td = operation.comment
-          td
-            = link_to 'Edit', edit_operation_path(operation), class: 'btn btn-success btn-space'
-            = link_to 'Delete', operation_path(operation), method: :delete, class: 'btn btn-danger btn-space'
+div.row
+  h1 = @account.name
+div.row
+  div.col-md-9
+    div.row.operations
+      h1 Operations
+    div.row.justify-content-md-center
+      = paginate @operations, theme: 'twitter-bootstrap-4', pagination_class: "pagination"
+    div.row
+      table.table.table-hover
+        thead
+          tr
+            th scope="col" = sort_link(@q, :category_name, 'Category')
+            th.right scope="col" = sort_link(@q, :value_cents, 'Amount')
+            th scope="col"  Comment
+            th scope="col" style='width: 20%'  Actions
+        tbody
+          - @operations.each do |operation|
+            tr
+              td
+                = link_to "#{operation.category&.name}", account_path(@account, q: { category_id_eq: operation.category&.id })
+              td class="#{operation.operation_type} right"
+                = number_to_currency(operation.value, unit: '')
+              td = operation.comment
+              td
+                = link_to 'Edit', edit_operation_path(operation), class: 'btn btn-success'
+                = link_to 'Delete', operation_path(operation), method: :delete, class: 'btn btn-danger'
+    div.row.justify-content-md-center
+      = paginate @operations, theme: 'twitter-bootstrap-4', pagination_class: "pagination"
+  div.col-md-3
+    div.row.justify-content-md-center
+      div.col-md-12.right
+        = link_to 'Update account', edit_account_path(@account), class: 'btn btn-warning'
+        = link_to 'Add operation', new_operation_path, class: 'btn btn-success'
+        h6 Quick operations:
+        = link_to 'Add tempate operation', new_operation_path, class: 'btn btn-success'
