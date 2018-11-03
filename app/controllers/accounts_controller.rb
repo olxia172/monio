@@ -24,7 +24,8 @@ class AccountsController < ApplicationController
   end
 
   def show
-    @operations = @account.operations.order(created_at: :desc)
+    @q = @account.operations.ransack(params[:q])
+    @operations = @q.result.includes(:category).order(created_at: :asc)
   end
 
   def update

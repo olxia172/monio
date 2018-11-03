@@ -3,11 +3,8 @@ class OperationsController < ApplicationController
   before_action :set_operation, only: [:show, :edit, :update, :destroy]
 
   def index
-    @operations = current_user.operations.includes(:category).order(created_at: :asc)
-
-    if params[:sort_by_category].present?
-      @operations = @operations.where(category_id: params[:sort_by_category])
-    end
+    @q = Operation.ransack(params[:q])
+    @operations = @q.result.includes(:category).order(created_at: :asc)
   end
 
   def new

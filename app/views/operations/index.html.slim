@@ -3,15 +3,15 @@ h1 Operations
 table.table.table-hover
   thead
     tr
-      th scope="col"  Category
-      th scope="col"  Amount
+      th scope="col" = sort_link(@q, :category_name, 'Category')
+      th scope="col" = sort_link(@q, :value_cents, 'Amount')
       th scope="col"  Comment
       th scope="col"  Actions
   tbody
     - @operations.each do |operation|
       tr
         td
-          = link_to "#{operation.category&.name}", operations_path(sort_by_category: operation.category&.id)
+          = link_to "#{operation.category&.name}", operations_path(q: { category_id_eq: operation.category&.id })
         td = operation.value
         td = operation.comment
         td
