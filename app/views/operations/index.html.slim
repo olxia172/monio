@@ -16,7 +16,12 @@ div.row
           - @operations.each do |operation|
             tr
               td
-                = link_to "#{operation.category&.name}", operations_path(q: { category_id_eq: operation.category&.id })
+                - if operation.category.present?
+                  = link_to "#{operation.category&.name}", operations_path(q: { category_id_eq: operation.category&.id })
+                - else
+                  = simple_form_for operation do |f|
+                    = f.association :category
+                    = f.button :submit, class: 'btn btn-success'
               td class="#{operation.operation_type} right"
                 = number_to_currency(operation.value, unit: '')
               td = operation.comment

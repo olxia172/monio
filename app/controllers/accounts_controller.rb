@@ -3,7 +3,7 @@ class AccountsController < ApplicationController
   before_action :set_account, only: [:show, :edit, :update, :destroy]
 
   def index
-    @accounts = current_user.accounts.order(account_type: :asc)
+    @accounts = Account.order(account_type: :asc)
   end
 
   def new
@@ -47,7 +47,7 @@ class AccountsController < ApplicationController
   private
 
   def set_account
-    @account = current_user.accounts.find(params[:id])
+    @account = Account.find(params[:id])
   end
 
   def account_params
