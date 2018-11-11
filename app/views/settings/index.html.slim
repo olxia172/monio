@@ -1,0 +1,21 @@
+div.row
+  div.col-md-9
+    div.row.operations
+      h1 Budget settings settings
+    div.row.justify-content-md-center
+      p Here you can set up settings types for budget generation. You can assign multiple categories to single setting, but category can be assigned only to one category.
+    div.row
+      table.table.table-hover
+        thead
+          tr
+            th scope="col" Name
+            th scope="col" Categories
+            th scope="col" style='width: 20%'  Actions
+        tbody
+          - @settings.each do |setting|
+            tr
+              td = setting.name
+              td = setting.categories.pluck(:name).join(', ')
+              td
+                = link_to 'Edit', edit_setting_path(setting), class: 'btn btn-success'
+                = link_to 'Delete', setting_path(setting), method: :delete, class: 'btn btn-danger'
