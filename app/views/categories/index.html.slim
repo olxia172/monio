@@ -1,0 +1,31 @@
+div.row
+  div.col-md-9
+    div.row.operations
+      h1 Categories of operations
+    div.row
+      table.table.table-hover.center-content
+        thead
+          tr
+            th scope="col"  Name
+            th scope="col"  Operations count
+            th scope="col"  Operations sum
+            th scope="col"  Last month
+            th scope="col"  This month
+            th scope="col"  Actions
+        tbody
+          - @categories.each do |category|
+            tr
+              td = category.name
+              td = sum_of_operations_count(category)
+              td class="#{value_sign(sum_of_operations_values(category))} right"
+                = number_to_currency(sum_of_operations_values(category), unit: '')
+              td class="#{value_sign(sum_of_operations_values_from_last_month(category))} right"
+                = number_to_currency(sum_of_operations_values_from_last_month(category), unit: '')
+              td class="#{value_sign(sum_of_operations_values_from_this_month(category))} right"
+                = number_to_currency(sum_of_operations_values_from_this_month(category), unit: '')
+              td
+                = link_to (fa_icon 'eye 2x'), operations_path(q: { category_id_eq: category.id }), class: 'btn btn-info'
+  div.col-md-3
+    div.row.justify-content-md-center
+      div.col-md-12.right
+        = link_to 'Add new category', new_category_path, class: 'btn btn-outline-primary'

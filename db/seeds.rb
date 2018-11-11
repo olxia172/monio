@@ -7,7 +7,7 @@ account2 = Account.create(name: 'Hajsy2', user: user2)
 
 categories = ['Food', 'Bills - home', 'Bills - work', 'Bills - other', 'Income',
  'Electronics', 'Cosmetics', 'Other', 'Home supplies', 'Private', 'Coffee', 'Transfer',
- 'Clothes', 'Cat', 'Savings', 'Car', 'Income', 'Transport', 'Entertainment', 'Wedding']
+ 'Clothes', 'Cat', 'Savings', 'Car', 'Transport', 'Entertainment', 'Wedding']
 
 categories.each do |cat|
   Category.create(name: cat)
@@ -90,7 +90,8 @@ CSV.foreach("tmp/eKonto_76504441_180802_181102.csv", encoding: 'windows-1250', h
                    account: account1,
                    operation_type: operation_type,
                    value: sanitized_value,
-                   comment: comment
+                   comment: comment,
+                   paid_at: row[0].to_date
                  )
 end
 
@@ -116,6 +117,26 @@ CSV.foreach("tmp/eKonto_76445515_180802_181102.csv", encoding: 'windows-1250', h
                    account: account2,
                    operation_type: operation_type,
                    value: sanitized_value,
-                   comment: comment
+                   comment: comment,
+                   paid_at: row[0].to_date
                  )
+end
+
+SETTINGS = {
+  "Dom"=>["Bills - home", "Home supplies"],
+  "Jedzenie"=>["Food", "Coffee"],
+  "Opłaty praca"=>["Bills - work"],
+  "Rozrywka"=>["Bills - other", "Entertainment"],
+  "Transport"=>["Car", "Transport"],
+  "Kot"=>["Cat"],
+  "Oszczędności"=>["Savings", "Transfer"],
+  "Inne"=>["Clothes", "Electronics", "Cosmetics", "Other", "Private"],
+  "Dochody"=>["Income"]
+}
+
+SETTINGS.each_pair do |key, value|
+  cat_ids = Category.where(name: value).pluck(:id)
+
+  Setting.create(name: key,
+                 category_ids: cat_ids)
 end

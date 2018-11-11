@@ -1,6 +1,10 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @categories = Category.all.includes(:operations)
+  end
+
   def new
     @category = Category.new
   end

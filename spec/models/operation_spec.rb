@@ -122,4 +122,17 @@ RSpec.describe Operation, type: :model do
       end
     end
   end
+
+  describe '.paid_in_range' do
+    let!(:operation) { create(:operation, paid_at: Date.current ) }
+    let!(:operation2) { create(:operation, paid_at: (Date.current - 35.days) ) }
+
+    subject { described_class.paid_in_range(Date.current.month, Date.current.year) }
+
+    it 'returns proper records' do
+      result = subject.pluck(:id)
+
+      expect(result).to match_array([operation.id])
+    end
+  end
 end

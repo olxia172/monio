@@ -5,6 +5,7 @@ class OperationsController < ApplicationController
   def index
     @q = Operation.ransack(params[:q])
     @operations = @q.result.includes(:category).order(created_at: :asc).page(params[:page]).per(params[:per])
+    @categories = Category.all
   end
 
   def new
@@ -50,6 +51,12 @@ class OperationsController < ApplicationController
   end
 
   def operation_params
-    params.require(:operation).permit(:value, :operation_type, :category_id, :account_id, :target_account, :comment)
+    params.require(:operation).permit(:value,
+                                      :operation_type,
+                                      :category_id,
+                                      :account_id,
+                                      :target_account,
+                                      :comment,
+                                      :paid_at)
   end
 end

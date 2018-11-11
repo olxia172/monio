@@ -6,6 +6,7 @@ class BudgetsController < ApplicationController
   end
 
   def show
+    @entries = @budget.budget_entries.includes(:setting)
   end
 
   def new
@@ -16,9 +17,9 @@ class BudgetsController < ApplicationController
   end
 
   def create
-    @budget = Budget.new(budget_params)
+    @budget = BudgetGenerator.new.generate
 
-    if @budget.save
+    if @budget.persisted?
       redirect_to @budget, notice: 'Budget was successfully created.'
     else
       render :new
