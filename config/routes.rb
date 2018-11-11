@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   resources :accounts
-  resources :operations
   resources :categories, only: [:new, :create]
+  resources :budgets
+  resources :operations
+  resources :settings
 end

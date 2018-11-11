@@ -3,7 +3,7 @@ class AccountsController < ApplicationController
   before_action :set_account, only: [:show, :edit, :update, :destroy]
 
   def index
-    @accounts = current_user.accounts.order(account_type: :asc)
+    @accounts = Account.order(account_type: :asc)
   end
 
   def new
@@ -24,7 +24,8 @@ class AccountsController < ApplicationController
   end
 
   def show
-    @operations = @account.operations.order(created_at: :desc)
+    @q = @account.operations.ransack(params[:q])
+    @operations = @q.result.includes(:category).order(created_at: :asc).page(params[:page]).per(params[:per])
   end
 
   def update
@@ -46,7 +47,7 @@ class AccountsController < ApplicationController
   private
 
   def set_account
-    @account = current_user.accounts.find(params[:id])
+    @account = Account.find(params[:id])
   end
 
   def account_params

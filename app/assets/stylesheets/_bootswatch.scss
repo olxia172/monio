@@ -38,6 +38,7 @@ $font-family-serif:      Georgia, Cambria, "Times New Roman", Times, serif !defa
   border-radius: 1.078em;
   font-family: $font-family-sans-serif;
   font-size: 0.875em;
+  margin: 10px;
 
   &-lg {
     border-radius: 2.688em;
@@ -80,6 +81,7 @@ footer {
 table,
 .table {
   font-size: 0.875em;
+  vertical-align: middle;
 
   &-primary,
   &-secondary,
@@ -87,7 +89,7 @@ table,
   &-info,
   &-warning,
   &-danger {
-    color: #fff;
+    color: black;
   }
 }
 
@@ -119,7 +121,7 @@ table,
 
   &-success {
     &, > th, > td {
-      background-color: $success;
+      background-color: #c9ebbe;
     }
   }
 
@@ -131,7 +133,7 @@ table,
 
   &-danger {
     &, > th, > td {
-      background-color: $danger;
+      background-color: #ffb8c8;
     }
   }
 

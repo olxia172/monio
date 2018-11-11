@@ -1,0 +1,22 @@
+.nav-link,
+.dropdown-item,
+.navbar-brand,
+.btn {
+  text-decoration: none;
+}
+
+a {
+  color: black;
+  text-decoration: underline;
+}
+
+.right {
+  text-align: right;
+}
+
+.center-content {
+  th, td {
+    vertical-align: middle;
+    text-align: center;
+  }
+}
