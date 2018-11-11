@@ -1,2 +1,6 @@
-h1 Expenses#edit
-p Find me in app/views/expenses/edit.html.slim
+h1 Add new setting setting
+
+= simple_form_for @setting do |f|
+  = f.input :name
+  = f.input :category_ids, label: 'Categories', collection: Category.where(setting_id: nil), input_html: { multiple: true }
+  = f.button :submit, class: 'btn btn-success'
