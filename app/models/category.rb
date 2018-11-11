@@ -1,6 +1,6 @@
 class Category < ApplicationRecord
   has_many :operations
-  belongs_to :expense, optional: true
+  belongs_to :setting, optional: true
 
   validates :name, presence: true, uniqueness: true
 end
