@@ -4,12 +4,12 @@ class OperationsController < ApplicationController
 
   def index
     @q = Operation.ransack(params[:q])
-    @operations = @q.result.includes(:category).order(created_at: :asc).page(params[:page]).per(params[:per])
+    @operations = @q.result.includes(:category).order(created_at: :desc).page(params[:page]).per(params[:per])
     @categories = Category.all
   end
 
   def new
-    @operation = Operation.new(account: current_user.accounts.most_active)
+    @operation = Operation.new(operation_params)
   end
 
   def create
@@ -51,9 +51,10 @@ class OperationsController < ApplicationController
   end
 
   def operation_params
-    params.require(:operation).permit(:value,
+    params.fetch(:operation, {}).permit(:value,
                                       :operation_type,
                                       :category_id,
+                                      :user_id,
                                       :account_id,
                                       :target_account,
                                       :comment,

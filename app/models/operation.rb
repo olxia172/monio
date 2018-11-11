@@ -14,7 +14,8 @@ class Operation < ApplicationRecord
   monetize :value_cents
 
   validate :transfer_type_if_target_account_present,
-           :target_account_if_transfer_type
+           :target_account_if_transfer_type,
+           :account_balance
 
   after_validation :create_associated_operation
   after_create :set_proper_value, :update_account_balance
@@ -32,6 +33,12 @@ class Operation < ApplicationRecord
   def target_account_if_transfer_type
     if transfer?
       errors.add(:target_account, "should be present") unless target_account.present?
+    end
+  end
+
+  def account_balance
+    if expense? && ((account.balance_cents - value_cents) < 0)
+      errors.add(:account, "doesn't have enough funds")
     end
   end
 
