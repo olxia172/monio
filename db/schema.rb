@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_03_211133) do
+ActiveRecord::Schema.define(version: 2018_11_11_135904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,15 @@ ActiveRecord::Schema.define(version: 2018_11_03_211133) do
     t.integer "balance_cents", default: 0, null: false
     t.string "balance_currency", default: "PLN", null: false
     t.index ["user_id"], name: "index_accounts_on_user_id"
+  end
+
+  create_table "budget_expenses", force: :cascade do |t|
+    t.bigint "budget_id"
+    t.bigint "expense_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["budget_id"], name: "index_budget_expenses_on_budget_id"
+    t.index ["expense_id"], name: "index_budget_expenses_on_expense_id"
   end
 
   create_table "budgets", force: :cascade do |t|
@@ -46,8 +55,6 @@ ActiveRecord::Schema.define(version: 2018_11_03_211133) do
     t.string "value_currency", default: "PLN", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "budget_id"
-    t.index ["budget_id"], name: "index_expenses_on_budget_id"
   end
 
   create_table "operations", force: :cascade do |t|
