@@ -1,6 +1,23 @@
-p#notice = notice
-
-
-=> link_to 'Edit', edit_budget_path(@budget)
-'|
-=< link_to 'Back', budgets_path
+div.row
+  div.col-md-9
+    div.row.operations
+      h1 = @budget.name
+    div.row.justify-content-md-center
+      p
+    div.row
+      table.table.table-hover
+        thead
+          tr
+            th scope="col" Setting
+            th.right scope="col" Amount
+        tbody
+          - @entries.each do |entry|
+            tr
+              td = entry.setting.name
+              td = entry.value
+  div.col-md-3
+    div.row.justify-content-md-center
+      div.col-md-12.right
+        = link_to 'Add operation', new_operation_path, class: 'btn btn-success'
+        h6 Quick operations:
+        = link_to 'Add tempate operation', new_operation_path, class: 'btn btn-success'

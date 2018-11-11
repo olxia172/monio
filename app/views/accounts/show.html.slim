@@ -22,7 +22,7 @@ div.row
                   = link_to "#{operation.category&.name}", operations_path(q: { category_id_eq: operation.category&.id })
                 - else
                   = simple_form_for operation do |f|
-                    = f.association :category
+                    = f.association :category, collection: @categories
                     = f.button :submit, class: 'btn btn-success'
               td class="#{operation.operation_type} right"
                 = number_to_currency(operation.value, unit: '')

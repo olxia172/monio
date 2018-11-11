@@ -7,4 +7,5 @@ h1 Edit operation
   = f.association :account
   = f.input :target_account, collection: current_user.accounts
   = f.input :comment
+  = f.input :paid_at, as: :date
   = f.button :submit, class: 'btn btn-success'

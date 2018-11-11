@@ -21,6 +21,8 @@ class Operation < ApplicationRecord
   before_destroy :remember_operation_value, :remember_account
   after_destroy :restore_balance
 
+  scope :paid_last_month, -> (month, year) { where(paid_at: Time.zone.local(year, month).all_month ) }
+
   def transfer_type_if_target_account_present
     if target_account.present?
       errors.add(:operation_type, "should be transfer type") unless transfer?
@@ -39,7 +41,9 @@ class Operation < ApplicationRecord
                             category: category,
                             operation_type: :income,
                             value_cents: value_cents,
-                            user: user)
+                            user: user,
+                            paid_at: paid_at
+                          )
       self.target_account = nil
       self.expense!
     end
