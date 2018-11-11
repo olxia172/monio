@@ -19,7 +19,7 @@ class BudgetGenerator
 
   def create_entries
     Setting.all.each do |setting|
-      value = setting.operations.paid_last_month(@budget_month, @budget_year).sum(:value_cents)
+      value = setting.operations.paid_in_range(@budget_month, @budget_year).sum(:value_cents)
       @budget.budget_entries.create(setting: setting,
                                     value_cents: value)
     end

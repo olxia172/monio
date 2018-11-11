@@ -21,7 +21,7 @@ class Operation < ApplicationRecord
   before_destroy :remember_operation_value, :remember_account
   after_destroy :restore_balance
 
-  scope :paid_last_month, -> (month, year) { where(paid_at: Time.zone.local(year, month).all_month ) }
+  scope :paid_in_range, -> (month, year) { where(paid_at: Time.zone.local(year, month).all_month ) }
 
   def transfer_type_if_target_account_present
     if target_account.present?
