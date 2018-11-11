@@ -18,13 +18,18 @@ div.row
           - @operations.each do |operation|
             tr
               td
-                = link_to "#{operation.category&.name}", account_path(@account, q: { category_id_eq: operation.category&.id })
+                - if operation.category.present?
+                  = link_to "#{operation.category&.name}", operations_path(q: { category_id_eq: operation.category&.id })
+                - else
+                  = simple_form_for operation do |f|
+                    = f.association :category
+                    = f.button :submit, class: 'btn btn-success'
               td class="#{operation.operation_type} right"
                 = number_to_currency(operation.value, unit: '')
               td = operation.comment
               td
-                = link_to 'Edit', edit_operation_path(operation), class: 'btn btn-success'
-                = link_to 'Delete', operation_path(operation), method: :delete, class: 'btn btn-danger'
+                = link_to (fa_icon 'edit 2x'), edit_operation_path(operation), class: 'btn btn-success'
+                = link_to (fa_icon 'trash 2x'), operation_path(operation), method: :delete, class: 'btn btn-danger'
     div.row.justify-content-md-center
       = paginate @operations, theme: 'twitter-bootstrap-4', pagination_class: "pagination"
   div.col-md-3

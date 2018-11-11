@@ -10,12 +10,12 @@ div.row
           tr
             th scope="col" Name
             th scope="col" Categories
-            th scope="col" style='width: 20%'  Actions
+            th scope="col" style='width: 20%' Actions
         tbody
           - @settings.each do |setting|
             tr
               td = setting.name
               td = setting.categories.pluck(:name).join(', ')
               td
-                = link_to 'Edit', edit_setting_path(setting), class: 'btn btn-success'
-                = link_to 'Delete', setting_path(setting), method: :delete, class: 'btn btn-danger'
+                = link_to (fa_icon 'edit 2x'), edit_setting_path(setting), class: 'btn btn-success'
+                = link_to (fa_icon 'trash 2x'), setting_path(setting), method: :delete, class: 'btn btn-danger'

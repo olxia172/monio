@@ -13,3 +13,10 @@ a {
 .right {
   text-align: right;
 }
+
+.center-content {
+  th, td {
+    vertical-align: middle;
+    text-align: center;
+  }
+}

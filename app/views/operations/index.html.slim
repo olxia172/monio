@@ -26,8 +26,8 @@ div.row
                 = number_to_currency(operation.value, unit: '')
               td = operation.comment
               td
-                = link_to 'Edit', edit_operation_path(operation), class: 'btn btn-success'
-                = link_to 'Delete', operation_path(operation), method: :delete, class: 'btn btn-danger'
+                = link_to (fa_icon 'edit 2x'), edit_operation_path(operation), class: 'btn btn-success'
+                = link_to (fa_icon 'trash 2x'), operation_path(operation), method: :delete, class: 'btn btn-danger'
     div.row.justify-content-md-center
       = paginate @operations, theme: 'twitter-bootstrap-4', pagination_class: "pagination"
   div.col-md-3
