@@ -18,7 +18,7 @@ class AccountsController < ApplicationController
     if @account.save
       redirect_to accounts_path, notice: 'You successfully created account'
     else
-      flash.now.alert = 'Something went wrong. Check if all fields are properly completed'
+      flash.now.alert = t('errors.sth_went_wrong')
       render 'new'
     end
   end
@@ -33,7 +33,7 @@ class AccountsController < ApplicationController
     if @account.update(account_params)
       redirect_to account_path(@account), notice: 'You successfully updated your account'
     else
-      flash.now.alert = 'Something went wrong. Check if all fields are properly completed'
+      flash.now.alert = t('errors.sth_went_wrong')
     end
   end
 

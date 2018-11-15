@@ -16,7 +16,7 @@ class SettingsController < ApplicationController
     if @setting.save
       redirect_to settings_path, notice: 'You successfully created new setting type'
     else
-      flash.now.alert = 'Something went wrong. Check if all fields are properly completed'
+      flash.now.alert = t('errors.sth_went_wrong')
       render 'new'
     end
   end
@@ -27,7 +27,7 @@ class SettingsController < ApplicationController
     if @setting.update(setting_params)
       redirect_to settings_path, notice: 'You successfully updated setting settings'
     else
-      flash.now.alert = 'Something went wrong. Check if all fields are properly completed'
+      flash.now.alert = t('errors.sth_went_wrong')
       render 'edit'
     end
   end

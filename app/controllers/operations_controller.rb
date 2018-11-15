@@ -18,7 +18,7 @@ class OperationsController < ApplicationController
     if @operation.save
       redirect_to operations_path, notice: 'You successfully created operation'
     else
-      flash.now.alert = 'Something went wrong. Check if all fields are properly completed'
+      flash.now.alert = t('errors.sth_went_wrong')
       render 'new'
     end
   end
@@ -31,7 +31,7 @@ class OperationsController < ApplicationController
     if @operation.update(operation_params)
       redirect_to operations_path, notice: 'You successfully updated operation'
     else
-      flash.now.alert = 'Something went wrong. Check if all fields are properly completed'
+      flash.now.alert = t('errors.sth_went_wrong')
       render 'edit'
     end
   end
@@ -40,7 +40,7 @@ class OperationsController < ApplicationController
     if @operation.destroy
       redirect_to operations_path, notice: 'You successfully deleted operation'
     else
-      flash.now.alert = 'Something went wrong. Check if all fields are properly completed'
+      flash.now.alert = t('errors.sth_went_wrong')
     end
   end
 

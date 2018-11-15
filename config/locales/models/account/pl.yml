@@ -1,0 +1,19 @@
+pl:
+  activerecord:
+    models:
+      account:
+        one: Konto
+        other: Konta
+    attributes:
+      account:
+        name: Nazwa
+        account_type: Typ konta
+      account/account_type:
+        standard: standardowe
+        savings: oszczędnościowe
+    errors:
+      models:
+        account:
+          attributes:
+            name:
+              blank: nie może być pusta

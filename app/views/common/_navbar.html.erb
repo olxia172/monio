@@ -7,39 +7,39 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/dashboard">Dashboard</a>
+        <a class="nav-link" href="/dashboard"><%= I18n.t('navbar.dashboard')%></a>
       </li>
       <li class="nav-item">
-        <%= link_to 'Accounts', accounts_path, class: 'nav-link' %>
+        <%= link_to I18n.t('navbar.accounts'), accounts_path, class: 'nav-link' %>
       </li>
       <li class="nav-item">
-        <%= link_to 'Operations', operations_path, class: 'nav-link' %>
+        <%= link_to I18n.t('navbar.operations'), operations_path, class: 'nav-link' %>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Budget
+          <%= I18n.t('navbar.budget') %>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <%= link_to I18n.t('navbar.categories'), categories_path, class: 'dropdown-item'%>
+          <%= link_to I18n.t('navbar.budget_settings'), settings_path, class: 'dropdown-item'%>
           <div class="dropdown-divider"></div>
-          <%= link_to 'Categories', categories_path, class: 'dropdown-item'%>
-          <%= link_to 'Budget settings', settings_path, class: 'dropdown-item'%>
           <a class="dropdown-item" href="#">Another action</a>
           <div class="dropdown-divider"></div>
-          <%= link_to 'Create budget', budgets_path, method: :post, class: 'dropdown-item'%>
+          <%= link_to I18n.t('navbar.create_budget'), budgets_path, method: :post, class: 'dropdown-item'%>
         </div>
       </li>
     </ul>
     <ul class="navbar-nav text-right">
       <% if user_signed_in? %>
         <li class="nav-item active">
-          <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link'%>
+          <%= link_to I18n.t('navbar.sign_out'), destroy_user_session_path, method: :delete, class: 'nav-link'%>
         </li>
       <% else %>
         <li class="nav-item active">
-          <%= link_to 'Sign in', new_user_session_path, class: 'nav-link'%>
+          <%= link_to I18n.t('navbar.sign_in'), new_user_session_path, class: 'nav-link'%>
         </li>
         <li class="nav-item active">
-          <%= link_to 'Sign up', new_user_registration_path, class: 'nav-link'%>
+          <%= link_to I18n.t('navbar.sign_up'), new_user_registration_path, class: 'nav-link'%>
         </li>
       <% end %>
     </ul>
