@@ -1,16 +1,16 @@
 div.row
   div.col-md-9
     div.row.operations
-      h1 Budget settings settings
+      h1 = t '.title'
     div.row.justify-content-md-center
-      p Here you can set up settings types for budget generation. You can assign multiple categories to single setting, but category can be assigned only to one category.
+      p = t '.description'
     div.row
       table.table.table-hover
         thead
           tr
-            th scope="col" Name
-            th scope="col" Categories
-            th scope="col" style='width: 20%' Actions
+            th scope="col" = t '.name'
+            th scope="col" = t '.categories'
+            th scope="col" style='width: 20%' = t '.actions'
         tbody
           - @settings.each do |setting|
             tr

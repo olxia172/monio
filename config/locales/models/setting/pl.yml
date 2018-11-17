@@ -1,0 +1,10 @@
+pl:
+  activerecord:
+    models:
+      setting:
+        one: Ustawienie
+        other: Ustawienia
+    attributes:
+      setting:
+        name: Nazwa
+        categories: Kategorie

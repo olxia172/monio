@@ -2,10 +2,16 @@ pl:
   helpers:
     submit:
       account:
-        create: Utwórz konto
+        create: Dodaj
         update: Zaktualizuj konto
       operation:
-        create: Utwórz operację
+        create: Dodaj
+        update: Zakutalizuj
+      category:
+        create: Dodaj
+        update: Zakutalizuj
+      setting:
+        create: Dodaj
         update: Zakutalizuj
   simple_form:
     "yes": Tak

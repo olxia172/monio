@@ -1,0 +1,12 @@
+pl:
+  settings:
+    index:
+      title: Kategorie operacji
+      description: Here you can set up settings types for budget generation. You can assign multiple categories to single setting, but category can be assigned only to one category.
+      name: Nazwa
+      categories: Kategorie
+      actions: Dostępne akcje
+    new:
+      title: Dodaj nowe ustawienie
+    edit:
+      title: Edycja ustawień

@@ -1,0 +1,4 @@
+= simple_form_for @setting do |f|
+  = f.input :name
+  = f.association :categories, collection: Category.avaliable_for_setting(@setting.id), as: :check_boxes, input_html: { multiple: true }
+  = f.button :submit, class: 'btn btn-success'

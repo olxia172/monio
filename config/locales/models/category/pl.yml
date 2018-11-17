@@ -1,0 +1,9 @@
+pl:
+  activerecord:
+    models:
+      category:
+        one: Kategoria
+        other: Kategorie
+    attributes:
+      category:
+        name: Nazwa
