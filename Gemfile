@@ -43,6 +43,7 @@ gem 'font-awesome-rails'
 gem 'i18n'
 gem 'jquery-rails'
 gem 'kaminari'
+gem 'kaminari-i18n'
 gem 'money-rails', '~> 1.12'
 gem 'simple_form'
 gem "slim-rails"
