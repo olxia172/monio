@@ -1,11 +1,13 @@
-h1 Edit operation
-
+h1 = t '.title'
 = simple_form_for @operation do |f|
-  = f.input :value
-  = f.input :operation_type, collection: Operation.operation_types.keys, required: true
-  = f.association :category
-  = f.association :account
-  = f.input :target_account, collection: current_user.accounts
-  = f.input :comment
-  = f.input :paid_at, as: :date
-  = f.button :submit, class: 'btn btn-success'
+  div.row
+    div.col-md-6
+      = f.input :value
+      = f.input :operation_type, collection: Operation.operation_types.keys, required: true
+      = f.association :category
+      = f.association :account
+    div.col-md-6
+      = f.input :target_account, collection: current_user.accounts
+      = f.input :comment
+      = f.input :paid_at, as: :date, html5: true
+      = f.button :submit, class: 'btn btn-success'

@@ -1,0 +1,16 @@
+pl:
+  accounts:
+    index:
+      title: Twoje konta
+      name: Nazwa
+      type: Typ konta
+      balance: Saldo
+      actions: Dostępne akcje
+      new_account: Dodaj nowe konto
+    new:
+      title: Nowe konto
+    edit:
+      title: Edytuj konto
+    show:
+      title: 'Konto: '
+      operations_list: Lista operacji

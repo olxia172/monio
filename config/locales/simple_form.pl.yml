@@ -1,4 +1,12 @@
 pl:
+  helpers:
+    submit:
+      account:
+        create: Utwórz konto
+        update: Zaktualizuj konto
+      operation:
+        create: Utwórz operację
+        update: Zakutalizuj
   simple_form:
     "yes": Tak
     "no": Nie
@@ -13,6 +21,10 @@ pl:
     labels:
       account:
         balance: Wstępne saldo
+      operation:
+        target_account: Konto docelowe
+        value: Kwota
+
     # Examples
     # labels:
     #   defaults:

@@ -1,0 +1,14 @@
+pl:
+  operations:
+    index:
+      title: Wszystkie operacje
+    operations_table:
+      actions: Dostępne akcje
+      comment: Komentarz
+      date: Data operacji
+      amount: Kwota
+      category: Kategoria
+    new:
+      title: Nowa operacja
+    edit:
+      title: Edytuj operację

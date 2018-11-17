@@ -1,15 +1,15 @@
 div.row
   div.col-md-9
     div.row.operations
-      h1 Your accounts
+      h1 = t '.title'
     div.row
       table.table.table-hover.center-content
         thead
           tr
-            th scope="col"  Name
-            th scope="col"  Type
-            th scope="col"  Balance
-            th scope="col"  Actions
+            th scope="col"  = t '.name'
+            th scope="col"  = t '.type'
+            th scope="col"  = t '.balance'
+            th scope="col"  = t '.actions'
         tbody
           - @accounts.each do |account|
             tr
@@ -22,4 +22,4 @@ div.row
   div.col-md-3
     div.row.justify-content-md-center
       div.col-md-12.right
-        = link_to 'Add new account', new_account_path, class: 'btn btn-outline-primary'
+        = link_to t('.new_account'), new_account_path, class: 'btn btn-outline-primary'

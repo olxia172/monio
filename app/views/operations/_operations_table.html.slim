@@ -1,0 +1,27 @@
+div.row
+  table.table.table-hover
+    thead
+      tr
+        th scope="col" = sort_link(@q, :category_name, t('.category'))
+        th.right scope="col" = sort_link(@q, :value_cents, t('.amount'))
+        th scope="col" = t '.date'
+        th scope="col" = t '.comment'
+        th scope="col" style='width: 20%' = t '.actions'
+    tbody
+      - @operations.each do |operation|
+        tr
+          td
+            - if operation.category.present?
+              = link_to "#{operation.category&.name}", operations_path(q: { category_id_eq: operation.category&.id })
+            - else
+              = simple_form_for operation do |f|
+                = f.association :category, collection: @categories
+                = f.button :submit, class: 'btn btn-success'
+          td class="#{operation.operation_type} right"
+            = number_to_currency(operation.value, unit: '')
+          td = operation.paid_at
+          td = operation.comment
+          td
+            = link_to (fa_icon 'edit 2x'), edit_operation_path(operation), class: 'btn btn-success'
+            = link_to (fa_icon 'trash 2x'), operation_path(operation), method: :delete, class: 'btn btn-danger'
+            = link_to (fa_icon 'copy 2x'), new_operation_path(operation: sanitize_params(operation)), class: 'btn btn-info'

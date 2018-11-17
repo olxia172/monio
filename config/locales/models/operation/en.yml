@@ -1,0 +1,21 @@
+en:
+  activerecord:
+    models:
+      operation:
+        one: Operacja
+        other: Operacje
+    attributes:
+      operation:
+        comment: Komentarz
+        operation_type: Typ operacji
+        user: Użytkownik
+        account: Konto
+        category: Kategoria
+        value_cents: Kwota
+        paid_at: Data operacji
+    errors:
+      models:
+        account:
+          attributes:
+            name:
+              blank: nie może być pusta
