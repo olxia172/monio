@@ -6,7 +6,6 @@ pl:
       type: Typ konta
       balance: Saldo
       actions: Dostępne akcje
-      new_account: Dodaj nowe konto
     new:
       title: Nowe konto
     edit:

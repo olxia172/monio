@@ -20,6 +20,4 @@ div.row
                 = link_to (fa_icon 'eye 2x'), account_path(account), class: 'btn btn-info'
                 = link_to (fa_icon 'edit 2x'), edit_account_path(account), class: 'btn btn-success'
   div.col-md-3
-    div.row.justify-content-md-center
-      div.col-md-12.right
-        = link_to t('.new_account'), new_account_path, class: 'btn btn-outline-primary'
+    = render 'common/sidebar'

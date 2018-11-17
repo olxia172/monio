@@ -10,9 +10,4 @@ div.row
     div.row.justify-content-md-center
       = paginate @operations, theme: 'twitter-bootstrap-4', pagination_class: "pagination"
   div.col-md-3
-    div.row.justify-content-md-center
-      div.col-md-12.right
-        = link_to 'Update account', edit_account_path(@account), class: 'btn btn-warning'
-        = link_to 'Add operation', new_operation_path, class: 'btn btn-success'
-        h6 Quick operations:
-        = link_to 'Add tempate operation', new_operation_path, class: 'btn btn-success'
+    = render 'common/sidebar', locals: { account: @account }

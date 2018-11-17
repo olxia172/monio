@@ -14,5 +14,12 @@ pl:
     sign_in: Zaloguj się
     sign_out: Wyloguj się
     sign_up: Zarejestruj się
+  sidebar:
+    links:
+      new_operation: Nowa operacja
+      new_template_operation: Nowy szablon operacji
+      new_account: Nowe konto
+    titles:
+      quick: Na skróty
   errors:
     sth_went_wrong: Coś poszło nie tak. Sprawdź czy wszystkie pola są poprawnie wypełnione.

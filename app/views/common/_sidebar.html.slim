@@ -1,0 +1,19 @@
+div.row.justify-content-md-center
+  div.col-md-12.right
+    div.row
+      div.move-from-top
+    div.row
+      div.col-md-12
+        h6 = t 'sidebar.titles.quick'
+        = fa_icon('binoculars')
+    div.row
+      div.col-md-12
+        = link_to t('sidebar.links.new_operation'),
+                  new_operation_path(operation: { account_id: @account&.id }),
+                  class: 'btn btn-success'
+        = link_to t('sidebar.links.new_template_operation'),
+                  new_operation_path,
+                  class: 'btn btn-warning'
+        = link_to t('sidebar.links.new_account'),
+                  new_account_path,
+                  class: 'btn btn-primary'
