@@ -19,6 +19,7 @@ pl:
       new_operation: Nowa operacja
       new_template_operation: Nowy szablon operacji
       new_account: Nowe konto
+      new_category: Nowa kategoria
     titles:
       quick: Na skróty
   errors:

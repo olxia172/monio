@@ -1,0 +1,10 @@
+pl:
+  categories:
+    index:
+      title: Kategorie operacji
+      name: Nazwa
+      operations_count: Ilość operacji
+      operations_sum: Suma operacji
+      this_month: W tym miesiącu
+      last_month: W poprzednim miesiącu
+      actions: Dostępne akcje
