@@ -2,7 +2,8 @@ pl:
   settings:
     index:
       title: Kategorie operacji
-      description: Here you can set up settings types for budget generation. You can assign multiple categories to single setting, but category can be assigned only to one category.
+      description: Tutaj możesz dodać ustawienia potrzebne do generowania budżetu. Możesz przypisać kilka kategorii do pojedynczego ustawienia, ale nie możesz przypisać jednej kategorii do kilku ustawień.
+      # Here you can set up settings types for budget generation. You can assign multiple categories to single setting, but category can be assigned only to one category.
       name: Nazwa
       categories: Kategorie
       actions: Dostępne akcje

@@ -1,0 +1,5 @@
+pl:
+  budgets:
+    show:
+      settings: Ustawienia
+      amount: Przewidywana ilość
