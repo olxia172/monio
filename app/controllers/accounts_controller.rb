@@ -16,10 +16,10 @@ class AccountsController < ApplicationController
     @account = current_user.accounts.new(account_params)
 
     if @account.save
-      redirect_to accounts_path, notice: 'You successfully created account'
+      redirect_to accounts_path, notice: create_notice(action: 'create', model: 'account')
     else
-      flash.now.alert = t('errors.sth_went_wrong')
-      render 'new'
+      flash.now.alert = t('errors.sth_went_wrong_with_form')
+      render :new
     end
   end
 
@@ -31,17 +31,18 @@ class AccountsController < ApplicationController
 
   def update
     if @account.update(account_params)
-      redirect_to account_path(@account), notice: 'You successfully updated your account'
+      redirect_to account_path(@account), notice: create_notice(action: 'update', model: 'account')
     else
-      flash.now.alert = t('errors.sth_went_wrong')
+      flash.now.alert = t('errors.sth_went_wrong_with_form')
+      render :edit
     end
   end
 
   def destroy
     if @account.destroy
-      redirect_to accounts_path, notice: 'You successfully deleted account'
+      redirect_to accounts_path, notice: create_notice(action: 'delete', model: 'account')
     else
-      flash.now.alert = 'Something went wrong.'
+      flash.now.alert = t('errors.sth_went_wrong')
     end
   end
 

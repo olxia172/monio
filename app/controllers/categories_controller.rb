@@ -13,10 +13,10 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
 
     if @category.save
-      redirect_to operations_path, notice: 'You successfully created new category'
+      redirect_to operations_path, notice: create_notice(action: 'create', model: 'category')
     else
       flash.now.alert = t('errors.sth_went_wrong')
-      render 'new'
+      render :new
     end
   end
 

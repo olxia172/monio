@@ -16,10 +16,10 @@ class OperationsController < ApplicationController
     @operation = current_user.operations.new(operation_params)
 
     if @operation.save
-      redirect_to operations_path, notice: 'You successfully created operation'
+      redirect_to operations_path, notice: create_notice(action: 'create', model: 'operation')
     else
-      flash.now.alert = t('errors.sth_went_wrong')
-      render 'new'
+      flash.now.alert = t('errors.sth_went_wrong_with_form')
+      render :new
     end
   end
 
@@ -29,16 +29,16 @@ class OperationsController < ApplicationController
 
   def update
     if @operation.update(operation_params)
-      redirect_to operations_path, notice: 'You successfully updated operation'
+      redirect_to operations_path, notice: create_notice(action: 'update', model: 'operation')
     else
-      flash.now.alert = t('errors.sth_went_wrong')
-      render 'edit'
+      flash.now.alert = t('errors.sth_went_wrong_with_form')
+      render :edit
     end
   end
 
   def destroy
     if @operation.destroy
-      redirect_to operations_path, notice: 'You successfully deleted operation'
+      redirect_to operations_path, notice: create_notice(action: 'delete', model: 'operation')
     else
       flash.now.alert = t('errors.sth_went_wrong')
     end

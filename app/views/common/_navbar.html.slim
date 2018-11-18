@@ -1,0 +1,29 @@
+nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
+  a.navbar-brand href="/"  monIO
+  button.navbar-toggler aria-controls="navbarSupportedContent" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarSupportedContent" data-toggle="collapse" type="button"
+    span.navbar-toggler-icon
+  #navbarSupportedContent.collapse.navbar-collapse
+    ul.navbar-nav.mr-auto
+      li.nav-item.active
+        a.nav-link href="/dashboard" = I18n.t('navbar.dashboard')
+      li.nav-item
+        = link_to I18n.t('navbar.accounts'), accounts_path, class: 'nav-link'
+      li.nav-item
+        = link_to I18n.t('navbar.operations'), operations_path, class: 'nav-link'
+      li.nav-item.dropdown
+        a#navbarDropdown.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+          = I18n.t('navbar.budget')
+        .dropdown-menu aria-labelledby="navbarDropdown"
+          = link_to I18n.t('navbar.categories'), categories_path, class: 'dropdown-item'
+          = link_to I18n.t('navbar.budget_settings'), settings_path, class: 'dropdown-item'
+          .dropdown-divider
+          = link_to I18n.t('navbar.create_budget'), budgets_path, method: :post, class: 'dropdown-item'
+    ul.navbar-nav.text-right
+      - if user_signed_in?
+        li.nav-item.active
+          = link_to I18n.t('navbar.sign_out'), destroy_user_session_path, method: :delete, class: 'nav-link'
+      - else
+        li.nav-item.active
+          = link_to I18n.t('navbar.sign_in'), new_user_session_path, class: 'nav-link'
+        li.nav-item.active
+          = link_to I18n.t('navbar.sign_up'), new_user_registration_path, class: 'nav-link'
