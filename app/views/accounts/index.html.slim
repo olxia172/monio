@@ -19,5 +19,6 @@ div.row
               td
                 = link_to (fa_icon 'eye 2x'), account_path(account), class: 'btn btn-info'
                 = link_to (fa_icon 'edit 2x'), edit_account_path(account), class: 'btn btn-success'
+                = link_to (fa_icon 'trash 2x'), account_path(account), method: :delete, class: 'btn btn-danger'
   div.col-md-3
     = render 'common/sidebar'

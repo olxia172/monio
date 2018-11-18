@@ -28,6 +28,7 @@ class Operation < ApplicationRecord
   after_destroy :restore_balance
 
   scope :paid_in_range, -> (month, year) { where(paid_at: Time.zone.local(year, month).all_month ) }
+  scope :newest, -> { order(created_at: :desc).limit(10) }
 
   def transfer_type_if_target_account_present
     if target_account.present?
