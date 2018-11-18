@@ -1,5 +1,8 @@
 class Account < ApplicationRecord
+  include TranslateEnum
+
   enum account_type: { standard: 0, savings: 1 }
+  translate_enum :account_type
 
   belongs_to :user
   has_many :operations, dependent: :destroy

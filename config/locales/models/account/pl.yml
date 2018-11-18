@@ -9,9 +9,9 @@ pl:
         name: Nazwa
         account_type: Typ konta
         balance_cents: Saldo
-      account/account_type:
-        standard: standardowe
-        savings: oszczędnościowe
+        account_type_list:
+          standard: standardowe
+          savings: oszczędnościowe
     errors:
       models:
         account:

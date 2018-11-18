@@ -6,7 +6,7 @@ div.row
       table.table.table-hover.center-content
         thead
           tr
-            th scope="col" = t('.name')
+            th scope="col" = sort_link(@q, :name, t('.name'))
             th scope="col" = t('.operations_count')
             th scope="col" = t('.operations_sum')
             th scope="col" = t('.last_month')
@@ -25,5 +25,6 @@ div.row
                 = number_to_currency(category.sum_of_operations_values_from_this_month, unit: '')
               td
                 = link_to (fa_icon 'eye 2x'), operations_path(q: { category_id_eq: category.id }), class: 'btn btn-info'
+                = link_to (fa_icon 'edit 2x'), edit_category_path(category), class: 'btn btn-success'
   div.col-md-3
     = render 'common/sidebar'

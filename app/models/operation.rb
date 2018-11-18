@@ -1,14 +1,17 @@
 class Operation < ApplicationRecord
+  include TranslateEnum
+
   attr_accessor :target_account
 
   paginates_per 50
 
   enum operation_type: { expense: 0, income: 1, transfer: 2 }
+  translate_enum :operation_type
 
   belongs_to :account
   belongs_to :category, optional: true
   belongs_to :user
-  belongs_to :operation, optional: true
+  belongs_to :operation, optional: true, dependent: :destroy
   has_one :reference_operation, class_name: 'Operation', foreign_key: 'operation_id', dependent: :destroy
 
   monetize :value_cents
@@ -16,6 +19,8 @@ class Operation < ApplicationRecord
   validate :transfer_type_if_target_account_present,
            :target_account_if_transfer_type,
            :account_balance
+
+  validates :operation_type, presence: true
 
   after_validation :create_associated_operation
   after_create :set_proper_value, :update_account_balance
