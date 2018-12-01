@@ -1,0 +1,12 @@
+.git
+tmp/
+storage/
+vendor/
+spec/
+node_modules/
+public/packs/
+log/
+.env
+*.log
+Dockerfile
+.docker/data

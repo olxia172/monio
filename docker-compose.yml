@@ -1,0 +1,22 @@
+
+version: '3'
+services:
+  postgres:
+    image: postgres:10
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      PGDATA: /data
+    volumes:
+      - .docker/data/postgresql:/data
+  rails:
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      RAILS_SERVE_STATIC_FILES: 'true'
+      RAILS_ENV: production
+      SECRET_KEY_BASE: 'ABCDS'
+      DATABASE_URL: "postgres://postgres:postgres@postgres:5432/monio_production"
