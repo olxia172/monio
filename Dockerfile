@@ -58,6 +58,9 @@ RUN bundle install
 RUN yarn
 RUN rake tmp:create assets:precompile
 
+COPY .docker/monio/server /app/bin
+RUN chmod +x bin/server
+
 EXPOSE 3000
 
-CMD ["/bin/bash", "-l", "-c", "exec bin/rails s"]
+CMD ["/bin/bash", "-l", "-c", "exec bin/server"]
