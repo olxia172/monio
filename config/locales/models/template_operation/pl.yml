@@ -1,0 +1,25 @@
+pl:
+  activerecord:
+    models:
+      template_operation:
+        one: Szablon operacji
+        other: Szablony operacji
+    attributes:
+      template_operation:
+        comment: Komentarz
+        operation_type: Typ operacji
+        user: Użytkownik
+        account: Konto
+        category: Kategoria
+        value: Kwota
+        planned_at: Planowana data operacji
+        operation_type_list:
+          expense: Wydatek
+          income: Przychód
+          transfer: Transfer
+    errors:
+      models:
+        template_operation:
+          attributes:
+            planned_at:
+              blank: nie może być pusta

@@ -8,6 +8,8 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
         = link_to I18n.t('navbar.accounts'), accounts_path, class: 'nav-link'
       li.nav-item
         = link_to I18n.t('navbar.operations'), operations_path, class: 'nav-link'
+      li.nav-item
+        = link_to I18n.t('navbar.template_operations'), template_operations_path, class: 'nav-link'
       li.nav-item.dropdown
         a#navbarDropdown.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
           = I18n.t('navbar.budget')

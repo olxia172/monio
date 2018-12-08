@@ -1,0 +1,22 @@
+div.row
+  table.table.table-hover
+    thead
+      tr
+        th scope="col" = sort_link(@q, :category_name, t('.category'))
+        th.right scope="col" = sort_link(@q, :value_cents, t('.amount'))
+        th scope="col" = sort_link(@q, :planned_at, t('.date'))
+        th scope="col" = t '.comment'
+        th scope="col" = t '.account'
+        th scope="col" style='width: 20%' = t '.actions'
+    tbody
+      - @template_operations.each do |template_operation|
+        tr
+          td = link_to "#{template_operation.category&.name}", template_operations_path(q: { category_id_eq: template_operation.category&.id })
+          td class="#{template_operation.operation_type} right"
+            = number_to_currency(template_operation.value, unit: '')
+          td = template_operation.planned_at.to_s + t('.day_of_month')
+          td = template_operation.comment
+          td = link_to template_operation.account.name, account_path(template_operation.account)
+          td
+            = link_to (fa_icon 'edit 2x'), edit_template_operation_path(template_operation), class: 'btn btn-success'
+            = link_to (fa_icon 'trash 2x'), template_operation_path(template_operation), method: :delete, class: 'btn btn-danger'

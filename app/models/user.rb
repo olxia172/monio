@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_many :accounts, dependent: :nullify
   has_many :operations, dependent: :nullify
+  has_many :template_operations, dependent: :nullify
 end
