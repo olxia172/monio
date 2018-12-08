@@ -10,6 +10,7 @@ pl:
     update: Zaktualizowano
   models:
     operation: operację
+    template_operation: szablon operacji
     account: konto
     setting: ustawienie
     category: kategorię
@@ -18,6 +19,7 @@ pl:
     dashboard: Podsumowanie
     accounts: Konta
     operations: Operacje
+    template_operations: Szablony operacji
     budget: Budżet
     categories: Kategorie
     budget_settings: Ustawienia budżetu

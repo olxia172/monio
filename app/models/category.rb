@@ -4,7 +4,8 @@ class Category < ApplicationRecord
               :sum_of_operations_values_from_this_month,
               :sum_of_operations_count
 
-  has_many :operations
+  has_many :operations, dependent: :nullify
+  has_many :template_operations, dependent: :nullify
   belongs_to :setting, optional: true
 
   validates :name, presence: true, uniqueness: true

@@ -1,19 +1,7 @@
-h1 Listing template_operations
-
-table
-  thead
-    tr
-      th
-      th
-      th
-
-  tbody
-    - @template_operations.each do |template_operation|
-      tr
-        td = link_to 'Show', template_operation
-        td = link_to 'Edit', edit_template_operation_path(template_operation)
-        td = link_to 'Destroy', template_operation, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-= link_to 'New Template operation', new_template_operation_path
+div.row
+  div.col-md-9
+    div.row.operations
+      h1 = t '.title'
+    = render 'template_operations_table', locals: { template_operations: @template_operations }
+  div.col-md-3
+    = render 'common/sidebar'

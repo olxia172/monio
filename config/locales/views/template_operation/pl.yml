@@ -1,0 +1,16 @@
+pl:
+  template_operations:
+    index:
+      title: Wszystkie szablony operacji
+    template_operations_table:
+      actions: Dostępne akcje
+      comment: Komentarz
+      date: Data operacji
+      amount: Kwota
+      account: Konto
+      category: Kategoria
+      day_of_month: -go dnia miesiąca
+    new:
+      title: Nowy szablon operacji
+    edit:
+      title: Edytuj szablon operacji

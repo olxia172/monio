@@ -13,6 +13,9 @@ pl:
       setting:
         create: Dodaj
         update: Zakutalizuj
+      template_operation:
+        create: Dodaj
+        update: Zakutalizuj
   simple_form:
     "yes": Tak
     "no": Nie

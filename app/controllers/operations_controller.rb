@@ -51,13 +51,15 @@ class OperationsController < ApplicationController
   end
 
   def operation_params
-    params.fetch(:operation, {}).permit(:value,
-                                      :operation_type,
-                                      :category_id,
-                                      :user_id,
-                                      :account_id,
-                                      :target_account,
-                                      :comment,
-                                      :paid_at)
+    params.fetch(:operation, {}).permit(
+      :value,
+      :operation_type,
+      :category_id,
+      :user_id,
+      :account_id,
+      :target_account,
+      :comment,
+      :paid_at
+    )
   end
 end
