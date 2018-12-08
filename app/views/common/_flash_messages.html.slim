@@ -1,0 +1,12 @@
+- if flash[:alert]
+  .alert.alert-warning.alert-dismissible.fade.show role="alert"
+    strong= I18n.t('flash_messages.warning')
+    = alert
+    button.close aria-label="Close" data-dismiss="alert" type="button"
+      span aria-hidden="true" ×
+- if flash[:notice]
+  .alert.alert-dismissible.alert-success.fade.show role="alert"
+    strong= I18n.t('flash_messages.success')
+    = notice
+    button.close aria-label="Close" data-dismiss="alert" type="button"
+      span aria-hidden="true" ×

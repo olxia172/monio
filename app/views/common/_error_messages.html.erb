@@ -1,7 +1,0 @@
-<% unless object.errors.messages[field_name].empty? %>
-  <div class="form-group has-danger">
-    <% object.errors.messages[field_name].each do |msg| %>
-      <div class="invalid-feedback error-text"> <%= msg %> </div>
-    <% end %>
-  </div>
-<% end %>

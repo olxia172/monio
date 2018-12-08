@@ -1,0 +1,10 @@
+pl:
+  activerecord:
+    models:
+      budget:
+        one: Budżet
+        other: budżety
+    attributes:
+      setting:
+        name: Nazwa
+        comment: Komentarz

@@ -1,0 +1,12 @@
+= simple_form_for @operation do |f|
+  div.row
+    div.col-md-6
+      = f.input :value
+      = f.input :operation_type, collection: Operation.translated_operation_types, include_blank: false
+      = f.association :category, include_blank: false
+      = f.association :account, include_blank: false
+    div.col-md-6
+      = f.input :target_account, collection: current_user.accounts
+      = f.input :comment
+      = f.input :paid_at, as: :date, html5: true
+      = f.button :submit, class: 'btn btn-success'

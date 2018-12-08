@@ -31,3 +31,6 @@
 
 en:
   hello: "Hello world"
+  flash_messages:
+    warning: Warning!
+    success: Success!

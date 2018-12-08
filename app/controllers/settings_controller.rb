@@ -14,10 +14,10 @@ class SettingsController < ApplicationController
     @setting = Setting.new(setting_params)
 
     if @setting.save
-      redirect_to settings_path, notice: 'You successfully created new setting type'
+      redirect_to settings_path, notice: create_notice(action: 'create', model: 'setting')
     else
-      flash.now.alert = 'Something went wrong. Check if all fields are properly completed'
-      render 'new'
+      flash.now.alert = t('errors.sth_went_wrong_with_form')
+      render :new
     end
   end
 
@@ -25,18 +25,18 @@ class SettingsController < ApplicationController
 
   def update
     if @setting.update(setting_params)
-      redirect_to settings_path, notice: 'You successfully updated setting settings'
+      redirect_to settings_path, notice: create_notice(action: 'update', model: 'setting')
     else
-      flash.now.alert = 'Something went wrong. Check if all fields are properly completed'
-      render 'edit'
+      flash.now.alert = t('errors.sth_went_wrong_with_form')
+      render :edit
     end
   end
 
   def destroy
     if @setting.destroy
-      redirect_to settings_path, notice: 'You successfully deleted setting setting'
+      redirect_to settings_path, notice: create_notice(action: 'delete', model: 'setting')
     else
-      flash.now.alert = 'Something went wrong'
+      flash.now.alert = t('errors.sth_went_wrong')
     end
   end
 

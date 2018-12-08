@@ -1,41 +1,13 @@
 div.row
-  h1 = @account.name
+  h1 = t('.title') + @account.name
 div.row
   div.col-md-9
     div.row.operations
-      h1 Operations
+      h1 = t '.operations_list'
     div.row.justify-content-md-center
       = paginate @operations, theme: 'twitter-bootstrap-4', pagination_class: "pagination"
-    div.row
-      table.table.table-hover
-        thead
-          tr
-            th scope="col" = sort_link(@q, :category_name, 'Category')
-            th.right scope="col" = sort_link(@q, :value_cents, 'Amount')
-            th scope="col"  Comment
-            th scope="col" style='width: 20%'  Actions
-        tbody
-          - @operations.each do |operation|
-            tr
-              td
-                - if operation.category.present?
-                  = link_to "#{operation.category&.name}", operations_path(q: { category_id_eq: operation.category&.id })
-                - else
-                  = simple_form_for operation do |f|
-                    = f.association :category, collection: @categories
-                    = f.button :submit, class: 'btn btn-success'
-              td class="#{operation.operation_type} right"
-                = number_to_currency(operation.value, unit: '')
-              td = operation.comment
-              td
-                = link_to (fa_icon 'edit 2x'), edit_operation_path(operation), class: 'btn btn-success'
-                = link_to (fa_icon 'trash 2x'), operation_path(operation), method: :delete, class: 'btn btn-danger'
+    = render 'operations/operations_table', locals: { operations: @operations }
     div.row.justify-content-md-center
       = paginate @operations, theme: 'twitter-bootstrap-4', pagination_class: "pagination"
   div.col-md-3
-    div.row.justify-content-md-center
-      div.col-md-12.right
-        = link_to 'Update account', edit_account_path(@account), class: 'btn btn-warning'
-        = link_to 'Add operation', new_operation_path, class: 'btn btn-success'
-        h6 Quick operations:
-        = link_to 'Add tempate operation', new_operation_path, class: 'btn btn-success'
+    = render 'common/sidebar', locals: { account: @account }

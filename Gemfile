@@ -40,13 +40,16 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'devise-bootstrap-views', '~> 1.0'
 gem 'font-awesome-rails'
+gem 'i18n'
 gem 'jquery-rails'
 gem 'kaminari'
+gem 'kaminari-i18n'
 gem 'money-rails', '~> 1.12'
 gem 'simple_form'
 gem "slim-rails"
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'ransack'
+gem 'translate_enum', require: 'translate_enum/active_record'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

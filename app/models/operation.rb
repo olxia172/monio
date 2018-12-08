@@ -1,20 +1,26 @@
 class Operation < ApplicationRecord
+  include TranslateEnum
+
   attr_accessor :target_account
 
   paginates_per 50
 
   enum operation_type: { expense: 0, income: 1, transfer: 2 }
+  translate_enum :operation_type
 
   belongs_to :account
   belongs_to :category, optional: true
   belongs_to :user
-  belongs_to :operation, optional: true
+  belongs_to :operation, optional: true, dependent: :destroy
   has_one :reference_operation, class_name: 'Operation', foreign_key: 'operation_id', dependent: :destroy
 
   monetize :value_cents
 
   validate :transfer_type_if_target_account_present,
-           :target_account_if_transfer_type
+           :target_account_if_transfer_type,
+           :account_balance
+
+  validates :operation_type, presence: true
 
   after_validation :create_associated_operation
   after_create :set_proper_value, :update_account_balance
@@ -22,6 +28,7 @@ class Operation < ApplicationRecord
   after_destroy :restore_balance
 
   scope :paid_in_range, -> (month, year) { where(paid_at: Time.zone.local(year, month).all_month ) }
+  scope :newest, -> { order(created_at: :desc).limit(10) }
 
   def transfer_type_if_target_account_present
     if target_account.present?
@@ -32,6 +39,12 @@ class Operation < ApplicationRecord
   def target_account_if_transfer_type
     if transfer?
       errors.add(:target_account, "should be present") unless target_account.present?
+    end
+  end
+
+  def account_balance
+    if expense? && ((account.balance_cents - value_cents) < 0)
+      errors.add(:account, "doesn't have enough funds")
     end
   end
 

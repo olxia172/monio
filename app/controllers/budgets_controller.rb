@@ -20,23 +20,28 @@ class BudgetsController < ApplicationController
     @budget = BudgetGenerator.new.generate
 
     if @budget.persisted?
-      redirect_to @budget, notice: 'Budget was successfully created.'
+      redirect_to @budget, notice: create_notice(action: 'create', model: 'budget')
     else
+      flash.now.alert = t('errors.sth_went_wrong')
       render :new
     end
   end
 
   def update
     if @budget.update(budget_params)
-      redirect_to @budget, notice: 'Budget was successfully updated.'
+      redirect_to @budget, notice: create_notice(action: 'update', model: 'budget')
     else
+      flash.now.alert = t('errors.sth_went_wrong')
       render :edit
     end
   end
 
   def destroy
-    @budget.destroy
-    redirect_to budgets_url, notice: 'Budget was successfully destroyed.'
+    if @budget.destroy
+      redirect_to budgets_url, notice: create_notice(action: 'delete', model: 'budget')
+    else
+      flash.now.alert = t('errors.sth_went_wrong')
+    end
   end
 
   private

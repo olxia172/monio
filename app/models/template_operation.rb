@@ -1,0 +1,2 @@
+class TemplateOperation < ApplicationRecord
+end

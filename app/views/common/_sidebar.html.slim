@@ -1,0 +1,29 @@
+div.row
+  div.move-from-top
+div.row
+  div.col-md-12.right
+    h6
+      = t('sidebar.titles.quick')
+      = fa_icon('fighter-jet 2x')
+div.row
+  div.col-md-12
+    div.row
+      div.col-md-12.right
+        = link_to t('sidebar.links.new_operation'),
+                  new_operation_path(operation: { account_id: @account&.id }),
+                  class: 'btn btn-success'
+    div.row
+      div.col-md-12.right
+        = link_to t('sidebar.links.new_template_operation'),
+                  new_operation_path,
+                  class: 'btn btn-warning'
+    div.row
+      div.col-md-12.right
+        = link_to t('sidebar.links.new_account'),
+                  new_account_path,
+                  class: 'btn btn-primary'
+    div.row
+      div.col-md-12.right
+        = link_to t('sidebar.links.new_category'),
+                  new_category_path,
+                  class: 'btn btn-info'
