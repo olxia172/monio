@@ -1,0 +1,8 @@
+pl:
+  home:
+    index:
+      title:
+        not_logged_in: Musisz być zalogowany, aby zobaczyć więcej informacji
+      settings: Ustawienia
+      amount: Kwota
+      last_operations: Ostatnie operacje
