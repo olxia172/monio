@@ -33,13 +33,13 @@ class Operation < ApplicationRecord
 
   def transfer_type_if_target_account_present
     if target_account.present?
-      errors.add(:operation_type, "should be transfer type") unless transfer?
+      errors.add(:operation_type, :should_be_transfer_type) unless transfer?
     end
   end
 
   def target_account_if_transfer_type
     if transfer?
-      errors.add(:target_account, "should be present") unless target_account.present?
+      errors.add(:target_account, :cannot_be_blank) unless target_account.present?
     end
   end
   

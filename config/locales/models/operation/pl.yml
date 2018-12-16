@@ -20,7 +20,11 @@ pl:
           transfer: Transfer
     errors:
       models:
-        account:
+        operation:
           attributes:
-            name:
-              blank: nie może być pusta
+            operation_type:
+              should_be_transfer_type: powinen być transferem
+            target_account:
+              cannot_be_blank: nie może być puste
+              should_be_different_than_account: powinno być inne niż konto źródłowe
+

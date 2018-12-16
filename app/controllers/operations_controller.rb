@@ -59,7 +59,7 @@ class OperationsController < ApplicationController
   end  
 
   def set_template_operation
-    @template_operation = TemplateOperation.find(params[:template_operation_id])
+    @template_operation = TemplateOperation.find(params[:template_operation_id]) if params[:template_operation_id].present?
   end
 
   def operation_params
