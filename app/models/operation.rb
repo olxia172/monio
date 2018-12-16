@@ -45,13 +45,13 @@ class Operation < ApplicationRecord
   
   def target_account_different_than_account
     if transfer? && target_account.id == account.id
-      errors.add(:target_account, "should be different than account")
+      errors.add(:target_account, :should_be_different_than_account)
     end
   end
 
   def from_template_paid_this_month
     if template_operation.present? && template_operation.paid_this_month?
-      errors.add(:account, 'already paid from template')
+      errors.add(:value, :already_paid_from_template)
     end
   end
 
