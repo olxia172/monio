@@ -57,7 +57,7 @@ class TemplateOperationsController < ApplicationController
       :category_id,
       :user_id,
       :account_id,
-      :target_account,
+      :target_account_id,
       :comment,
       :planned_at
     )

@@ -1,14 +1,13 @@
 class Operation < ApplicationRecord
   include TranslateEnum
 
-  attr_accessor :target_account
-
   paginates_per 50
 
   enum operation_type: { expense: 0, income: 1, transfer: 2 }
   translate_enum :operation_type
 
   belongs_to :account
+  belongs_to :target_account, class_name: 'Account', foreign_key: 'target_account_id', optional: true
   belongs_to :category, optional: true
   belongs_to :user
   belongs_to :operation, optional: true, dependent: :destroy
@@ -18,7 +17,7 @@ class Operation < ApplicationRecord
 
   validate :transfer_type_if_target_account_present,
            :target_account_if_transfer_type,
-           :account_balance
+           :target_account_different_than_account
 
   validates :operation_type, presence: true
 
@@ -41,16 +40,16 @@ class Operation < ApplicationRecord
       errors.add(:target_account, "should be present") unless target_account.present?
     end
   end
-
-  def account_balance
-    if expense? && ((account.balance_cents - value_cents) < 0)
-      errors.add(:account, "doesn't have enough funds")
+  
+  def target_account_different_than_account
+    if transfer? && target_account == account
+      errors.add(:target_account, "should be different than account")
     end
   end
 
   def create_associated_operation
     if transfer? && target_account.present?
-      self.create_operation(account_id: target_account,
+      self.create_operation(account: target_account,
                             category: category,
                             operation_type: :income,
                             value_cents: value_cents,

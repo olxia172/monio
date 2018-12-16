@@ -6,6 +6,7 @@
       = f.association :category, include_blank: false
       = f.association :account, include_blank: false
     div.col-md-6
+      = f.association :target_account
       = f.input :comment
       = f.input :planned_at, collection: 1..31, include_blank: false
       = f.button :submit, class: 'btn btn-success'

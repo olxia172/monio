@@ -57,7 +57,7 @@ class OperationsController < ApplicationController
       :category_id,
       :user_id,
       :account_id,
-      :target_account,
+      :target_account_id,
       :comment,
       :paid_at
     )

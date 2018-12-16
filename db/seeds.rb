@@ -68,59 +68,59 @@ def match_category(operation)
   category
 end
 
-CSV.foreach("tmp/eKonto_76504441_180802_181102.csv", encoding: 'windows-1250', headers: true, col_sep: ';') do |row|
-  operation = row[3].split('/').first.upcase
-  category = match_category(operation)
-  value = row[6].delete(' ')
-  operation_type = if value.include?('-')
-                     0
-                   else
-                     1
-                   end
-  comment = 'Data operacji: ' + row[0] + ' opis: ' + row[2] + ' tytuł: ' + row[3] + ' Nadawca/Odbiorca: ' + row[4]
+# CSV.foreach("tmp/eKonto_76504441_180802_181102.csv", encoding: 'windows-1250', headers: true, col_sep: ';') do |row|
+#   operation = row[3].split('/').first.upcase
+#   category = match_category(operation)
+#   value = row[6].delete(' ')
+#   operation_type = if value.include?('-')
+#                      0
+#                    else
+#                      1
+#                    end
+#   comment = 'Data operacji: ' + row[0] + ' opis: ' + row[2] + ' tytuł: ' + row[3] + ' Nadawca/Odbiorca: ' + row[4]
 
-  sanitized_value = value.delete('-').sub(',', '.').to_f
+#   sanitized_value = value.delete('-').sub(',', '.').to_f
 
-  if sanitized_value > 6000 || sanitized_value == 4000 || sanitized_value == 8000
-    category = Category.find_by(name: 'Car')
-  end
+#   if sanitized_value > 6000 || sanitized_value == 4000 || sanitized_value == 8000
+#     category = Category.find_by(name: 'Car')
+#   end
 
-  Operation.create(category: category,
-                   user: user1,
-                   account: account1,
-                   operation_type: operation_type,
-                   value: sanitized_value,
-                   comment: comment,
-                   paid_at: row[0].to_date
-                 )
-end
+#   Operation.create(category: category,
+#                    user: user1,
+#                    account: account1,
+#                    operation_type: operation_type,
+#                    value: sanitized_value,
+#                    comment: comment,
+#                    paid_at: row[0].to_date
+#                  )
+# end
 
-CSV.foreach("tmp/eKonto_76445515_180802_181102.csv", encoding: 'windows-1250', headers: true, col_sep: ';') do |row|
-  operation = row[3].split('/').first.upcase
-  category = match_category(operation)
-  value = row[6].delete(' ')
-  operation_type = if value.include?('-')
-                     0
-                   else
-                     1
-                   end
-  comment = 'Data operacji: ' + row[0] + ' opis: ' + row[2] + ' tytuł: ' + row[3] + ' Nadawca/Odbiorca: ' + row[4]
+# CSV.foreach("tmp/eKonto_76445515_180802_181102.csv", encoding: 'windows-1250', headers: true, col_sep: ';') do |row|
+#   operation = row[3].split('/').first.upcase
+#   category = match_category(operation)
+#   value = row[6].delete(' ')
+#   operation_type = if value.include?('-')
+#                      0
+#                    else
+#                      1
+#                    end
+#   comment = 'Data operacji: ' + row[0] + ' opis: ' + row[2] + ' tytuł: ' + row[3] + ' Nadawca/Odbiorca: ' + row[4]
 
-  sanitized_value = value.delete('-').sub(',', '.').to_f
+#   sanitized_value = value.delete('-').sub(',', '.').to_f
 
-  if sanitized_value > 6000 || sanitized_value == 4000 || sanitized_value == 8000
-    category = Category.find_by(name: 'Car')
-  end
+#   if sanitized_value > 6000 || sanitized_value == 4000 || sanitized_value == 8000
+#     category = Category.find_by(name: 'Car')
+#   end
 
-  Operation.create(category: category,
-                   user: user2,
-                   account: account2,
-                   operation_type: operation_type,
-                   value: sanitized_value,
-                   comment: comment,
-                   paid_at: row[0].to_date
-                 )
-end
+#   Operation.create(category: category,
+#                    user: user2,
+#                    account: account2,
+#                    operation_type: operation_type,
+#                    value: sanitized_value,
+#                    comment: comment,
+#                    paid_at: row[0].to_date
+#                  )
+# end
 
 SETTINGS = {
   "Dom"=>["Bills - home", "Home supplies"],
