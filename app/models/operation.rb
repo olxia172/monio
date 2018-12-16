@@ -42,7 +42,7 @@ class Operation < ApplicationRecord
   end
   
   def target_account_different_than_account
-    if transfer? && target_account == account
+    if transfer? && target_account.id == account.id
       errors.add(:target_account, "should be different than account")
     end
   end

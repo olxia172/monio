@@ -9,7 +9,8 @@ pl:
         comment: Komentarz
         operation_type: Typ operacji
         user: Użytkownik
-        account: Konto
+        account: Konto źródłowe
+        target_account: Konto docelowe
         category: Kategoria
         value: Kwota
         planned_at: Planowana data operacji
