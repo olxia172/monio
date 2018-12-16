@@ -9,4 +9,5 @@
       = f.association :target_account
       = f.input :comment
       = f.input :paid_at, as: :date, html5: true
+      = f.hidden_field :template_operation_id
       = f.button :submit, class: 'btn btn-success'

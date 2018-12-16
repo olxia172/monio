@@ -11,6 +11,7 @@ class Operation < ApplicationRecord
   belongs_to :category, optional: true
   belongs_to :user
   belongs_to :operation, optional: true, dependent: :destroy
+  belongs_to :template_operation, optional: true
   has_one :reference_operation, class_name: 'Operation', foreign_key: 'operation_id', dependent: :destroy
 
   monetize :value_cents

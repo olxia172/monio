@@ -1,6 +1,7 @@
 class OperationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_operation, only: [:show, :edit, :update, :destroy]
+  before_action :set_template_operation, only: [:new]
 
   def index
     @q = Operation.ransack(params[:q])
@@ -9,7 +10,14 @@ class OperationsController < ApplicationController
   end
 
   def new
-    @operation = Operation.new(operation_params)
+    @operation = if @template_operation.present?
+                   @template_operation
+                     .operations
+                     .new(@template_operation.attributes.except('planned_at', 'name'))
+                 else
+                   Operation.new(operation_params)
+                 end
+    @operation.paid_at = Date.current
   end
 
   def create
@@ -48,6 +56,10 @@ class OperationsController < ApplicationController
 
   def set_operation
     @operation = Operation.find(params[:id])
+  end  
+
+  def set_template_operation
+    @template_operation = TemplateOperation.find(params[:template_operation_id])
   end
 
   def operation_params
@@ -59,7 +71,8 @@ class OperationsController < ApplicationController
       :account_id,
       :target_account_id,
       :comment,
-      :paid_at
+      :paid_at,
+      :template_operation_id
     )
   end
 end

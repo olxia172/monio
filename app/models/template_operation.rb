@@ -6,6 +6,8 @@ class TemplateOperation < ApplicationRecord
   belongs_to :category
   belongs_to :user
 
+  has_many :operations
+
   validates :planned_at, presence: true
   validate :transfer_type_if_target_account_present,
            :target_account_if_transfer_type,
