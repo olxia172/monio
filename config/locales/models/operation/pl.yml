@@ -13,6 +13,7 @@ pl:
         target_account: Konto docelowe
         category: Kategoria
         value_cents: Kwota
+        value: Kwota
         paid_at: Data operacji
         operation_type_list:
           expense: Wydatek
@@ -28,5 +29,5 @@ pl:
               cannot_be_blank: nie może być puste
               should_be_different_than_account: powinno być inne niż konto źródłowe
             value:
-              already_paid_from_template: została już pobrana w tym miesiącu używając tego szablonu.
+              already_paid_from_template: została już pobrana w tym miesiącu używając tego szablonu
 

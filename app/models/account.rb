@@ -11,7 +11,6 @@ class Account < ApplicationRecord
   monetize :balance_cents
 
   validates :name, presence: true
-  validate :balance_value
 
   scope :most_active, -> { where(account_type: :standard).first }
 end
