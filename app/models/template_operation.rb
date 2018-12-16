@@ -32,4 +32,8 @@ class TemplateOperation < ApplicationRecord
       errors.add(:target_account, "should be different than account")
     end
   end
+
+  def paid_this_month?
+    operations.where(created_at: Date.current.all_month).any?
+  end
 end

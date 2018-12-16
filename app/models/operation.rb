@@ -18,7 +18,8 @@ class Operation < ApplicationRecord
 
   validate :transfer_type_if_target_account_present,
            :target_account_if_transfer_type,
-           :target_account_different_than_account
+           :target_account_different_than_account,
+           :from_template_paid_this_month
 
   validates :operation_type, presence: true
 
@@ -45,6 +46,12 @@ class Operation < ApplicationRecord
   def target_account_different_than_account
     if transfer? && target_account.id == account.id
       errors.add(:target_account, "should be different than account")
+    end
+  end
+
+  def from_template_paid_this_month
+    if template_operation.present? && template_operation.paid_this_month?
+      errors.add(:account, 'already paid from template')
     end
   end
 
