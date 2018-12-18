@@ -42,10 +42,10 @@ class Operation < ApplicationRecord
       errors.add(:target_account, :cannot_be_blank) unless target_account.present?
     end
   end
-  
+
   def target_account_different_than_account
-    if transfer? && target_account.id == account.id
-      errors.add(:target_account, :should_be_different_than_account)
+    if target_account == account
+      errors.add(:target_account, :should_be_different_than_account) unless target_account.nil?
     end
   end
 
