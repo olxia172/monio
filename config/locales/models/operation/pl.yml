@@ -9,9 +9,11 @@ pl:
         comment: Komentarz
         operation_type: Typ operacji
         user: Użytkownik
-        account: Konto
+        account: Konto źródłowe
+        target_account: Konto docelowe
         category: Kategoria
         value_cents: Kwota
+        value: Kwota
         paid_at: Data operacji
         operation_type_list:
           expense: Wydatek
@@ -19,7 +21,13 @@ pl:
           transfer: Transfer
     errors:
       models:
-        account:
+        operation:
           attributes:
-            name:
-              blank: nie może być pusta
+            operation_type:
+              should_be_transfer_type: powinen być transferem
+            target_account:
+              cannot_be_blank: nie może być puste
+              should_be_different_than_account: powinno być inne niż konto źródłowe
+            value:
+              already_paid_from_template: została już pobrana w tym miesiącu używając tego szablonu
+

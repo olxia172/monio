@@ -6,6 +6,7 @@ div.row
         th.right scope="col" = sort_link(@q, :value_cents, t('.amount'))
         th scope="col" = sort_link(@q, :planned_at, t('.date'))
         th scope="col" = t '.comment'
+        th scope="col" = t '.paid_this_month'
         th scope="col" = t '.account'
         th scope="col" style='width: 20%' = t '.actions'
     tbody
@@ -16,7 +17,14 @@ div.row
             = number_to_currency(template_operation.value, unit: '')
           td = template_operation.planned_at.to_s + t('.day_of_month')
           td = template_operation.comment
+          td
+            - if template_operation.paid_this_month?
+              = fa_icon 'check-circle 2x', class: 'btn btn-success'
+            - else
+              = fa_icon 'times-circle 2x', class: 'btn btn-danger'
+
           td = link_to template_operation.account.name, account_path(template_operation.account)
           td
             = link_to (fa_icon 'edit 2x'), edit_template_operation_path(template_operation), class: 'btn btn-success'
             = link_to (fa_icon 'trash 2x'), template_operation_path(template_operation), method: :delete, class: 'btn btn-danger'
+            = link_to (fa_icon 'copy 2x'), new_operation_path(template_operation_id: template_operation.id), class: 'btn btn-info'

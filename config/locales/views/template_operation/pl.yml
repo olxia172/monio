@@ -5,6 +5,7 @@ pl:
     template_operations_table:
       actions: Dostępne akcje
       comment: Komentarz
+      paid_this_month: W tym miesiącu?
       date: Data operacji
       amount: Kwota
       account: Konto

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_08_163224) do
+ActiveRecord::Schema.define(version: 2018_12_16_181350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,9 +64,12 @@ ActiveRecord::Schema.define(version: 2018_12_08_163224) do
     t.string "value_currency", default: "PLN", null: false
     t.bigint "operation_id"
     t.date "paid_at"
+    t.bigint "target_account_id"
+    t.bigint "template_operation_id"
     t.index ["account_id"], name: "index_operations_on_account_id"
     t.index ["category_id"], name: "index_operations_on_category_id"
     t.index ["operation_id"], name: "index_operations_on_operation_id"
+    t.index ["template_operation_id"], name: "index_operations_on_template_operation_id"
     t.index ["user_id"], name: "index_operations_on_user_id"
   end
 
@@ -87,6 +90,8 @@ ActiveRecord::Schema.define(version: 2018_12_08_163224) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "planned_at"
+    t.bigint "target_account_id"
+    t.string "name"
     t.index ["account_id"], name: "index_template_operations_on_account_id"
     t.index ["category_id"], name: "index_template_operations_on_category_id"
     t.index ["user_id"], name: "index_template_operations_on_user_id"

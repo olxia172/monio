@@ -6,7 +6,8 @@
       = f.association :category, include_blank: false
       = f.association :account, include_blank: false
     div.col-md-6
-      = f.input :target_account, collection: current_user.accounts
+      = f.association :target_account
       = f.input :comment
       = f.input :paid_at, as: :date, html5: true
+      = f.hidden_field :template_operation_id
       = f.button :submit, class: 'btn btn-success'
