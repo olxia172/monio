@@ -2,6 +2,8 @@ div.row
   h1 = t('.title') + @account.name
 div.row
   div.col-md-9
+    div.row
+      = column_chart @operations_for_chart.group_by_day(:paid_at).sum('value_cents / 100'), xtitle: (t '.date'), ytitle: (t '.sum')
     div.row.operations
       h1 = t '.operations_list'
     div.row.justify-content-md-center
