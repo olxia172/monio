@@ -18,7 +18,6 @@ class Operation < ApplicationRecord
 
   validate :transfer_type_if_target_account_present,
            :target_account_if_transfer_type,
-           :target_account_different_than_account,
            :from_template_paid_this_month
 
   validates :operation_type, presence: true
@@ -40,12 +39,6 @@ class Operation < ApplicationRecord
   def target_account_if_transfer_type
     if transfer?
       errors.add(:target_account, :cannot_be_blank) unless target_account.present?
-    end
-  end
-
-  def target_account_different_than_account
-    if target_account == account
-      errors.add(:target_account, :should_be_different_than_account) unless target_account.nil?
     end
   end
 
