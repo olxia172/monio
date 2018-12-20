@@ -63,4 +63,6 @@ RUN chmod +x bin/server
 
 EXPOSE 3000
 
+ENV RAILS_LOG_TO_STDOUT true
+
 CMD ["/bin/bash", "-l", "-c", "exec bin/server"]
