@@ -3,6 +3,7 @@ pl:
     index:
       title: Wszystkie szablony operacji
     template_operations_table:
+      name: Nazwa
       actions: Dostępne akcje
       comment: Komentarz
       paid_this_month: W tym miesiącu?
