@@ -8,6 +8,7 @@ pl:
       date: Data operacji
       amount: Kwota
       category: Kategoria
+      account: Konto
     new:
       title: Nowa operacja
     edit:

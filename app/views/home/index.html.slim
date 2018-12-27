@@ -1,28 +1,31 @@
 - if user_signed_in?
   div.row
     div.col-md-9
-      div.row.operations
       - if @budget.present?
         h1 = @budget.name
-        div.row.justify-content-md-center
-          p
+        table.table.table-hover
+          tbody
+            tr
+              td style='width: 40%'
+                table.table.table-hover
+                  thead
+                    tr
+                      th scope="col" = t '.settings'
+                      th scope="col" = t '.amount'
+                  tbody
+                    - @entries&.each do |entry|
+                      tr
+                        td = entry.setting.name
+                        td = entry.value
+              td style='align: center; vertical-align: middle'
+                = pie_chart @entries.map { |e| [e.setting.name, (e.value_cents / 100.00)] }
         div.row
-          table.table.table-hover
-            thead
-              tr
-                th scope="col" = t '.settings'
-                th.right scope="col" = t '.amount'
-            tbody
-              - @entries&.each do |entry|
-                tr
-                  td = entry.setting.name
-                  td = entry.value
-      div.row.operations
-        h1 = t '.last_operations'
-      = render 'operations/operations_table', locals: { operations: @operations }
+          h1 = t '.chart_title'
+          = column_chart @chart_data, stacked: true, xtitle: (t '.chart.xtitle'), ytitle: (t '.chart.ytitle'), height: '500px', colors: ["#007bff", "#20c997", "#fd7e14"]
     div.col-md-3
       = render 'common/sidebar'
 - else
   div.row
     div.col-md-9
-    h1 = t '.title.not_logged_in'
+      h1 = t '.title.not_logged_in'
+    div.col-md-3

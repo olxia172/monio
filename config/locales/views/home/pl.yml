@@ -6,3 +6,7 @@ pl:
       settings: Ustawienia
       amount: Kwota
       last_operations: Ostatnie operacje
+      chart_title: Podsumowanie operacji
+      chart:
+        xtitle: Ustawienia budżetu
+        ytitle: Suma wydatków

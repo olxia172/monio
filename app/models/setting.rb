@@ -6,4 +6,8 @@ class Setting < ApplicationRecord
   def operations
     Operation.where(category_id: category_ids)
   end
+
+  def template_operations
+    TemplateOperation.where(category_id: category_ids)
+  end
 end

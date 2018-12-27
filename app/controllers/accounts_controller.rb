@@ -25,8 +25,9 @@ class AccountsController < ApplicationController
 
   def show
     @q = @account.operations.ransack(params[:q])
-    @operations = @q.result.includes(:category).order(created_at: :asc).page(params[:page]).per(params[:per])
+    @operations = @q.result.includes(:category).order(paid_at: :desc).page(params[:page]).per(params[:per])
     @categories = Category.all
+    @operations_for_chart = @account.operations
   end
 
   def update
