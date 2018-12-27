@@ -55,7 +55,8 @@ class Operation < ApplicationRecord
                             operation_type: :income,
                             value_cents: value_cents,
                             user: user,
-                            paid_at: paid_at
+                            paid_at: paid_at,
+                            template_operation: template_operation
                           )
       self.target_account = nil
       self.expense!
@@ -64,7 +65,7 @@ class Operation < ApplicationRecord
 
   def set_proper_value
     if expense?
-      self.update(value_cents: value_cents * -1)
+      self.update(value_cents: value_cents.abs * -1)
     end
   end
 
