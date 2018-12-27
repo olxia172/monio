@@ -10,6 +10,8 @@ class Category < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
 
+  default_scope { order(name: :asc) }
+
   scope :avaliable_for_setting, -> (setting_id) { where(setting_id: nil).or(Category.where(setting_id: setting_id)) }
 
   def sum_of_operations_count
