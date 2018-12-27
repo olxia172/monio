@@ -15,9 +15,6 @@ class TemplateOperation < ApplicationRecord
 
   monetize :value_cents
 
-  scope :paid_this_month, -> { joins(:operations).where(operations: { created_at: Date.current.all_month }) }
-  scope :not_paid_this_month, -> { where.not(id: paid_this_month) }
-
   def transfer_type_if_target_account_present
     if target_account.present?
       errors.add(:operation_type, "should be transfer type") unless transfer?
@@ -29,7 +26,7 @@ class TemplateOperation < ApplicationRecord
       errors.add(:target_account, "should be present") unless target_account.present?
     end
   end
-
+  
   def target_account_different_than_account
     if transfer? && target_account == account
       errors.add(:target_account, "should be different than account")
