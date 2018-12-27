@@ -12,10 +12,18 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require_tree .
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
 //= require Chart.bundle
 //= require chartkick
+
+$(document).ready(function() {
+    $('#operation_category_id').select2();
+    $('#operation_account_id').select2();
+    $('#operation_target_account_id').select2();
+    $('#template_operation_category_id').select2();
+    $('#template_operation_account_id').select2();
+    $('#template_operation_target_account_id').select2();
+});
