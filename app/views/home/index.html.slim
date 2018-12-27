@@ -20,7 +20,7 @@
               td style='align: center; vertical-align: middle'
                 = pie_chart @entries.map { |e| [e.setting.name, e.value_cents] }
         div.row
-          = column_chart set_chart_data(@operations_for_chart), stacked: true
+          = column_chart @chart_data, stacked: true
         div.row.operations
           h1 = t '.last_operations'
           = render 'operations/operations_table', locals: { operations: @operations }

@@ -4,5 +4,6 @@ class HomeController < ApplicationController
     @entries = @budget&.budget_entries&.includes(:setting)
     @q = Operation.ransack(params[:q])
     @operations = @q.result.includes(:category).newest
+    @chart_data = ChartDataGenerator.new.generate
   end
 end
