@@ -43,7 +43,7 @@ class Operation < ApplicationRecord
   end
 
   def from_template_paid_this_month
-    if template_operation.present? && template_operation.paid_this_month?
+    if template_operation.present? && template_operation.paid_this_month? && !template_operation.transfer?
       errors.add(:value, :already_paid_from_template)
     end
   end

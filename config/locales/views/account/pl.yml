@@ -13,3 +13,5 @@ pl:
     show:
       title: 'Konto: '
       operations_list: Lista operacji
+      date: Data
+      sum: Suma wydatków
