@@ -35,6 +35,10 @@ pl:
       new_category: Nowa kategoria
     titles:
       quick: Na skróty
+  chart:
+    paid: Zapłacone
+    planned: Zaplanowane
+    to_pay: Do zapłacenia
   errors:
     sth_went_wrong_with_form: Coś poszło nie tak. Sprawdź czy wszystkie pola są poprawnie wypełnione.
     sth_went_wrong: Coś poszło nie tak.

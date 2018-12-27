@@ -13,9 +13,9 @@ class ChartDataGenerator
 
   def fetch_chart_data
     [
-      { name: 'Zaplanowane', stack: 'stack2', data: planned_spendings },
-      { name: 'Zaplacone', stack: 'stack1', data: paid },
-      { name: 'Do zaplacenia', stack: 'stack1', data: left_to_pay_from_templates }
+      { name: (I18n.t('.chart.planned')), stack: 'stack2', data: planned_spendings },
+      { name: (I18n.t('.chart.paid')), stack: 'stack1', data: paid },
+      { name: (I18n.t('.chart.to_pay')), stack: 'stack1', data: left_to_pay_from_templates }
     ]
   end
 
