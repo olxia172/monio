@@ -8,12 +8,14 @@ div.row
           tr
             th scope="col" = t '.name'
             th scope="col" = t '.comment'
+            th scope="col" = t '.sum'
             th scope="col" style='width: 20%' = t '.actions'
         tbody
           - @budgets.each do |budget|
             tr
               td = budget.name
               td = budget.comment
+              td = budget.sum_of_entries
               td
                 = link_to (fa_icon 'eye'), budget_path(budget), class: 'btn btn-success'
                 = link_to (fa_icon 'trash'), budget_path(budget), method: :delete, class: 'btn btn-danger'
