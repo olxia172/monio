@@ -20,8 +20,6 @@
 //= require chartkick
 //= require jquery
 //= require best_in_place
-//= require jquery-ui
-//= require best_in_place.jquery-ui
 
 $(document).ready(function() {
     $('#operation_category_id').select2();

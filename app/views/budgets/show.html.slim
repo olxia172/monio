@@ -17,7 +17,7 @@ div.row
                     - @entries&.each do |entry|
                       tr
                         td = entry.setting.name
-                        td = entry.value
+                        td 
                         td = link_to (fa_icon 'edit'), edit_budget_path(entry), class: 'btn btn-success'
               td style='align: center; vertical-align: middle'
                 = pie_chart @entries.map { |e| [e.setting.name, (e.value_cents / 100.00)] }

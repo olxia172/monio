@@ -21,7 +21,7 @@ div.row
           td class="#{operation.operation_type} right"
             = number_to_currency(operation.value, unit: '')
           td = operation.paid_at
-          td = operation.comment
+          td = best_in_place operation, :comment, as: :textarea, :ok_button => 'OK'
           td = operation.account.name
           td
             = link_to (fa_icon 'edit'), edit_operation_path(operation), class: 'btn btn-success'
