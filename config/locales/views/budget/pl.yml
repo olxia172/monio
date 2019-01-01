@@ -1,5 +1,11 @@
 pl:
   budgets:
+    index:
+      title: Lista utworzonych budżetów
+      name: Nazwa
+      comment: Komentarz
+      actions: Akcje
+      sum: Suma zaplanowanych wydatków
     show:
       settings: Ustawienia
       amount: Przewidywana ilość

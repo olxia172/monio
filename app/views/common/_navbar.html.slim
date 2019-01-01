@@ -16,6 +16,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
         .dropdown-menu aria-labelledby="navbarDropdown"
           = link_to I18n.t('navbar.categories'), categories_path, class: 'dropdown-item'
           = link_to I18n.t('navbar.budget_settings'), settings_path, class: 'dropdown-item'
+          = link_to I18n.t('navbar.budgets'), budgets_path, class: 'dropdown-item'
           .dropdown-divider
           = link_to I18n.t('navbar.create_budget'), budgets_path, method: :post, class: 'dropdown-item'
     ul.navbar-nav.text-right

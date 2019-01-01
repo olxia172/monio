@@ -1,19 +1,21 @@
-h1 Listing budgets
-
-table
-  thead
-    tr
-      th
-      th
-      th
-
-  tbody
-    - @budgets.each do |budget|
-      tr
-        td = link_to 'Show', budget
-        td = link_to 'Edit', edit_budget_path(budget)
-        td = link_to 'Destroy', budget, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-= link_to 'New Budget', new_budget_path
+div.row
+  div.col-md-9
+    div.row.operations
+      h1 = t '.title'
+    div.row
+      table.table.table-hover
+        thead
+          tr
+            th scope="col" = t '.name'
+            th scope="col" = t '.comment'
+            th scope="col" style='width: 20%' = t '.actions'
+        tbody
+          - @budgets.each do |budget|
+            tr
+              td = budget.name
+              td = budget.comment
+              td
+                = link_to (fa_icon 'eye'), budget_path(budget), class: 'btn btn-success'
+                = link_to (fa_icon 'trash'), budget_path(budget), method: :delete, class: 'btn btn-danger'
+  div.col-md-3
+    = render 'common/sidebar'
