@@ -1,4 +1,5 @@
 class TemplateOperationsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_template_operation, only: [:show, :edit, :update, :destroy]
 
   def index

@@ -18,6 +18,10 @@
 //= require bootstrap-sprockets
 //= require Chart.bundle
 //= require chartkick
+//= require jquery
+//= require best_in_place
+//= require jquery-ui
+//= require best_in_place.jquery-ui
 
 $(document).ready(function() {
     $('#operation_category_id').select2();
@@ -26,4 +30,9 @@ $(document).ready(function() {
     $('#template_operation_category_id').select2();
     $('#template_operation_account_id').select2();
     $('#template_operation_target_account_id').select2();
+});
+
+$(document).ready(function() {
+  /* Activating Best In Place */
+  jQuery(".best_in_place").best_in_place();
 });
