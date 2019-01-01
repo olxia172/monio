@@ -18,7 +18,8 @@ class Operation < ApplicationRecord
 
   validate :transfer_type_if_target_account_present,
            :target_account_if_transfer_type,
-           :from_template_paid_this_month
+           :from_template_paid_this_month,
+           on: :create
 
   validates :operation_type, presence: true
 
