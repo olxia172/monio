@@ -19,7 +19,7 @@ class BudgetGenerator
 
   def create_entries
     Setting.all.each do |setting|
-      template_operations_value = setting.template_operations.sum(:value_cents)
+      template_operations_value = setting.template_operations.where.not(operation_type: :transfer).sum(:value_cents)
       other_operations_value = setting.operations.where(template_operation_id: nil).paid_in_range(@budget_month, @budget_year).sum(:value_cents)
 
       value = template_operations_value + other_operations_value
