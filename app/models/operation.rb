@@ -24,9 +24,9 @@ class Operation < ApplicationRecord
   validates :operation_type, presence: true
 
   after_validation :create_associated_operation
-  after_create :set_proper_value, :update_account_balance
-  before_destroy :remember_operation_value, :remember_account
-  after_destroy :restore_balance
+  before_save :set_proper_value
+  after_save :update_account_balance
+  after_destroy :update_account_balance
 
   scope :paid_in_range, -> (month, year) { where(paid_at: Time.zone.local(year, month).all_month ) }
   scope :newest, -> { order(created_at: :desc).limit(10) }
@@ -66,23 +66,14 @@ class Operation < ApplicationRecord
 
   def set_proper_value
     if expense?
-      self.update(value_cents: value_cents.abs * -1)
+      self.value_cents = value_cents.abs * -1
+    elsif income?
+      self.value_cents = value_cents.abs
     end
   end
 
   def update_account_balance
-    account.increment!(:balance_cents, value_cents)
-  end
-
-  def remember_operation_value
-    @value = value_cents * -1
-  end
-
-  def remember_account
-    @account = account
-  end
-
-  def restore_balance
-    @account.increment!(:balance_cents, @value)
+    sum = account.operations.sum(:value_cents)
+    account.update(balance_cents: sum)
   end
 end
