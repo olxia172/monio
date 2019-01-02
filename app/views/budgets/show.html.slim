@@ -12,13 +12,11 @@ div.row
                     tr
                       th scope="col" = t '.settings'
                       th scope="col" = t '.amount'
-                      th
                   tbody
                     - @entries&.each do |entry|
                       tr
                         td = entry.setting.name
-                        td 
-                        td = link_to (fa_icon 'edit'), edit_budget_path(entry), class: 'btn btn-success'
+                        td = entry.value
               td style='align: center; vertical-align: middle'
                 = pie_chart @entries.map { |e| [e.setting.name, (e.value_cents / 100.00)] }
   div.col-md-3
