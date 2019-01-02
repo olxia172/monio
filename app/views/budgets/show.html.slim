@@ -1,23 +1,25 @@
 div.row
   div.col-md-9
     div.row.operations
-      h1 = @budget.name
+      div.col-md-12
+        h1 = @budget.name
     div.row
-      table.table.table-hover
-          tbody
-            tr
-              td style='width: 40%'
-                table.table.table-hover
-                  thead
-                    tr
-                      th scope="col" = t '.settings'
-                      th scope="col" = t '.amount'
-                  tbody
-                    - @entries&.each do |entry|
+      div.col-md-12
+        table.table.table-hover
+            tbody
+              tr
+                td style='width: 40%'
+                  table.table.table-hover
+                    thead
                       tr
-                        td = entry.setting.name
-                        td = entry.value
-              td style='align: center; vertical-align: middle'
-                = pie_chart @entries.map { |e| [e.setting.name, (e.value_cents / 100.00)] }
+                        th scope="col" = t '.settings'
+                        th scope="col" = t '.amount'
+                    tbody
+                      - @entries&.each do |entry|
+                        tr
+                          td = entry.setting.name
+                          td = entry.value
+                td style='align: center; vertical-align: middle'
+                  = pie_chart @entries.map { |e| [e.setting.name, (e.value_cents / 100.00)] }
   div.col-md-3
     = render 'common/sidebar'

@@ -1,30 +1,32 @@
 div.row
   div.col-md-9
     div.row.operations
-      h1 = t '.title'
+      div.col-md-12
+        h1 = t '.title'
     div.row
-      table.table.table-hover.center-content
-        thead
-          tr
-            th scope="col" = sort_link(@q, :name, t('.name'))
-            th scope="col" = sort_link(@q, :operations_count, t('.operations_count'))
-            th scope="col" = t('.operations_sum')
-            th scope="col" = t('.last_month')
-            th scope="col" = t('.this_month')
-            th scope="col" = t('.actions')
-        tbody
-          - @categories.each do |category|
+      div.col-md-12
+        table.table.table-hover.center-content
+          thead
             tr
-              td = category.name
-              td = category.operations_count
-              td class="#{value_sign(category.sum_of_operations_values)} right"
-                = number_to_currency(category.sum_of_operations_values, unit: '')
-              td class="#{value_sign(category.sum_of_operations_values_from_last_month)} right"
-                = number_to_currency(category.sum_of_operations_values_from_last_month, unit: '')
-              td class="#{value_sign(category.sum_of_operations_values_from_this_month)} right"
-                = number_to_currency(category.sum_of_operations_values_from_this_month, unit: '')
-              td
-                = link_to (fa_icon 'eye 2x'), operations_path(q: { category_id_eq: category.id }), class: 'btn btn-info'
-                = link_to (fa_icon 'edit 2x'), edit_category_path(category), class: 'btn btn-success'
+              th scope="col" = sort_link(@q, :name, t('.name'))
+              th scope="col" = sort_link(@q, :operations_count, t('.operations_count'))
+              th scope="col" = t('.operations_sum')
+              th scope="col" = t('.last_month')
+              th scope="col" = t('.this_month')
+              th scope="col" = t('.actions')
+          tbody
+            - @categories.each do |category|
+              tr
+                td = category.name
+                td = category.operations_count
+                td class="#{value_sign(category.sum_of_operations_values)} right"
+                  = number_to_currency(category.sum_of_operations_values, unit: '')
+                td class="#{value_sign(category.sum_of_operations_values_from_last_month)} right"
+                  = number_to_currency(category.sum_of_operations_values_from_last_month, unit: '')
+                td class="#{value_sign(category.sum_of_operations_values_from_this_month)} right"
+                  = number_to_currency(category.sum_of_operations_values_from_this_month, unit: '')
+                td
+                  = link_to (fa_icon 'eye'), operations_path(q: { category_id_eq: category.id }), class: 'btn btn-info'
+                  = link_to (fa_icon 'edit'), edit_category_path(category), class: 'btn btn-success'
   div.col-md-3
     = render 'common/sidebar'
