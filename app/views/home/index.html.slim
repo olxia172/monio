@@ -2,7 +2,9 @@
   div.row
     div.col-md-9
       - if @budget.present?
-        h1 = @budget.name
+        h3
+          = @budget.name
+          = link_to (fa_icon 'edit'), budget_path(@budget), class: 'btn btn-success'
         table.table.table-hover
           tbody
             tr

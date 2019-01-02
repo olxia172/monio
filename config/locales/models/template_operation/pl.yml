@@ -14,6 +14,7 @@ pl:
         category: Kategoria
         value: Kwota
         planned_at: Planowana data operacji
+        name: Nazwa
         operation_type_list:
           expense: Wydatek
           income: Przychód

@@ -7,7 +7,7 @@ div.row
         thead
           tr
             th scope="col" = sort_link(@q, :name, t('.name'))
-            th scope="col" = t('.operations_count')
+            th scope="col" = sort_link(@q, :operations_count, t('.operations_count'))
             th scope="col" = t('.operations_sum')
             th scope="col" = t('.last_month')
             th scope="col" = t('.this_month')
@@ -16,7 +16,7 @@ div.row
           - @categories.each do |category|
             tr
               td = category.name
-              td = category.sum_of_operations_count
+              td = category.operations_count
               td class="#{value_sign(category.sum_of_operations_values)} right"
                 = number_to_currency(category.sum_of_operations_values, unit: '')
               td class="#{value_sign(category.sum_of_operations_values_from_last_month)} right"

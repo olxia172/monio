@@ -12,5 +12,7 @@ class Account < ApplicationRecord
 
   validates :name, presence: true
 
+  default_scope { order(name: :asc) }
+
   scope :most_active, -> { where(account_type: :standard).first }
 end

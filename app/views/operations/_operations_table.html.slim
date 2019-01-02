@@ -4,24 +4,18 @@ div.row
       tr
         th scope="col" = sort_link(@q, :category_name, t('.category'))
         th.right scope="col" = sort_link(@q, :value_cents, t('.amount'))
-        th scope="col" = t '.date'
+        th scope="col" = sort_link(@q, :paid_at, t('.date'))
         th scope="col" = t '.comment'
         th scope="col" = t '.account'
         th scope="col" style='width: 20%' = t '.actions'
     tbody
       - @operations.each do |operation|
         tr
-          td
-            - if operation.category.present?
-              = link_to "#{operation.category&.name}", operations_path(q: { category_id_eq: operation.category&.id })
-            - else
-              = simple_form_for operation do |f|
-                = f.association :category, collection: @categories
-                = f.button :submit, class: 'btn btn-success'
+          td = best_in_place operation, :category_id, as: :select, collection: Category.all.map { |c| [c.id, c.name] }, ok_button: 'OK', cancel_button: 'Anuluj', ok_button_class: 'btn btn-success', cancel_button_class: 'btn btn-danger'
           td class="#{operation.operation_type} right"
-            = number_to_currency(operation.value, unit: '')
+            = best_in_place operation, :value, ok_button: 'OK', cancel_button: 'Anuluj', ok_button_class: 'btn btn-success', cancel_button_class: 'btn btn-danger'
           td = operation.paid_at
-          td = operation.comment
+          td = best_in_place operation, :comment, as: :textarea, ok_button: 'OK', cancel_button: 'Anuluj', ok_button_class: 'btn btn-success', cancel_button_class: 'btn btn-danger'
           td = operation.account.name
           td
             = link_to (fa_icon 'edit'), edit_operation_path(operation), class: 'btn btn-success'

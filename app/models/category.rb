@@ -1,8 +1,7 @@
 class Category < ApplicationRecord
   attr_reader :sum_of_operations_values,
               :sum_of_operations_values_from_last_month,
-              :sum_of_operations_values_from_this_month,
-              :sum_of_operations_count
+              :sum_of_operations_values_from_this_month
 
   has_many :operations, dependent: :nullify
   has_many :template_operations, dependent: :nullify
@@ -10,11 +9,9 @@ class Category < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
 
-  scope :avaliable_for_setting, -> (setting_id) { where(setting_id: nil).or(Category.where(setting_id: setting_id)) }
+  default_scope { order(name: :asc) }
 
-  def sum_of_operations_count
-    operations.count
-  end
+  scope :avaliable_for_setting, -> (setting_id) { where(setting_id: nil).or(Category.where(setting_id: setting_id)) }
 
   def sum_of_operations_values
     operations.sum(:value_cents) / 100

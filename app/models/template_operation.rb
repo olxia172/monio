@@ -15,6 +15,8 @@ class TemplateOperation < ApplicationRecord
 
   monetize :value_cents
 
+  after_create :set_proper_value
+
   scope :paid_this_month, -> { joins(:operations).where(operations: { created_at: Date.current.all_month }) }
   scope :not_paid_this_month, -> { where.not(id: paid_this_month) }
 
@@ -38,5 +40,11 @@ class TemplateOperation < ApplicationRecord
 
   def paid_this_month?
     operations.where(created_at: Date.current.all_month).any?
+  end
+
+  def set_proper_value
+    if expense?
+      self.update(value_cents: value_cents.abs * -1)
+    end
   end
 end

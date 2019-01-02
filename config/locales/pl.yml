@@ -19,6 +19,7 @@ pl:
     dashboard: Podsumowanie
     accounts: Konta
     operations: Operacje
+    budgets: Zarządzaj budżetami
     template_operations: Szablony operacji
     budget: Budżet
     categories: Kategorie

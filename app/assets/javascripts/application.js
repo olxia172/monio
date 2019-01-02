@@ -12,10 +12,25 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require_tree .
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
 //= require Chart.bundle
 //= require chartkick
+//= require jquery
+//= require best_in_place
+
+$(document).ready(function() {
+    $('#operation_category_id').select2();
+    $('#operation_account_id').select2();
+    $('#operation_target_account_id').select2();
+    $('#template_operation_category_id').select2();
+    $('#template_operation_account_id').select2();
+    $('#template_operation_target_account_id').select2();
+});
+
+$(document).ready(function() {
+  /* Activating Best In Place */
+  jQuery(".best_in_place").best_in_place();
+});
