@@ -2,6 +2,9 @@ div.row
   div.col-md-9
     div.row.operations
       h1 = t '.title'
+    div.row
+      div.col-md-12.right
+        = link_to (fa_icon 'plus'), new_template_operation_path, class: 'btn btn-success'
     = render 'template_operations_table', locals: { template_operations: @template_operations }
   div.col-md-3
     = render 'common/sidebar'
