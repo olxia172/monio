@@ -7,7 +7,7 @@ class BudgetsController < ApplicationController
   end
 
   def show
-    @entries = @budget.budget_entries.includes(:setting)
+    @entries = @budget.budget_entries.includes(:setting).order(vale_cents: :asc)
   end
 
   def new

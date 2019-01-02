@@ -5,9 +5,9 @@ class BudgetEntriesController < ApplicationController
 
   def index
     @budget_entries = if params[:budget_id].present?
-                        @budget.budget_entries.includes(:setting)
+                        @budget.budget_entries.includes(:setting).order(value_cents: :asc)
                       else
-                        BudgetEntry.all.includes(:setting)
+                        BudgetEntry.all.includes(:setting).order(value_cents: :asc)
                       end
   end
 
