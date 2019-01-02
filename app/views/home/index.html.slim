@@ -4,7 +4,7 @@
       - if @budget.present?
         h3
           = @budget.name
-          = link_to (fa_icon 'edit'), budget_path(@budget), class: 'btn btn-success'
+          = link_to (fa_icon 'eye'), budget_path(@budget), class: 'btn btn-info'
         table.table.table-hover
           tbody
             tr
@@ -24,6 +24,9 @@
         div.row
           h1 = t '.chart_title'
           = column_chart @chart_data, stacked: true, xtitle: (t '.chart.xtitle'), ytitle: (t '.chart.ytitle'), height: '500px', colors: ["#007bff", "#20c997", "#fd7e14"]
+        div.row
+          h1 = t '.chart_title2'
+          = line_chart @savings_prognosis
     div.col-md-3
       = render 'common/sidebar'
 - else

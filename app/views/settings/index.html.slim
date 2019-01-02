@@ -1,21 +1,29 @@
 div.row
   div.col-md-9
     div.row.operations
-      h1 = t '.title'
+      div.col-md-12
+        h1 = t '.title'
     div.row.justify-content-md-center
-      p = t '.description'
+      div.col-md-12
+        p = t '.description'
     div.row
-      table.table.table-hover
-        thead
-          tr
-            th scope="col" = t '.name'
-            th scope="col" = t '.categories'
-            th scope="col" style='width: 20%' = t '.actions'
-        tbody
-          - @settings.each do |setting|
+      div.col-md-12.right
+        = link_to (fa_icon 'plus'), new_setting_path, class: 'btn btn-success'
+    div.row
+      div.col-md-12
+        table.table.table-hover
+          thead
             tr
-              td = setting.name
-              td = setting.categories.pluck(:name).join(', ')
-              td
-                = link_to (fa_icon 'edit 2x'), edit_setting_path(setting), class: 'btn btn-success'
-                = link_to (fa_icon 'trash 2x'), setting_path(setting), method: :delete, class: 'btn btn-danger'
+              th scope="col" = t '.name'
+              th scope="col" = t '.categories'
+              th scope="col" style='width: 20%' = t '.actions'
+          tbody
+            - @settings.each do |setting|
+              tr
+                td = setting.name
+                td = setting.categories.pluck(:name).join(', ')
+                td
+                  = link_to (fa_icon 'edit'), edit_setting_path(setting), class: 'btn btn-success'
+                  = link_to (fa_icon 'trash'), setting_path(setting), method: :delete, class: 'btn btn-danger'
+  div.col-md-3
+    = render 'common/sidebar'

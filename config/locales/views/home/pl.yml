@@ -7,6 +7,7 @@ pl:
       amount: Kwota
       last_operations: Ostatnie operacje
       chart_title: Podsumowanie operacji
+      chart_title2: Prognoza oszczędności na kolejne 12 miesięcy
       chart:
         xtitle: Ustawienia budżetu
         ytitle: Suma wydatków

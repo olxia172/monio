@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
   resources :accounts
   resources :categories
-  resources :budgets
+  resources :budgets do
+    resources :budget_entries
+  end
   resources :operations
   resources :template_operations
   resources :settings

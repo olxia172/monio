@@ -1,24 +1,29 @@
 div.row
   div.col-md-9
     div.row.operations
-      h1 = t '.title'
+      div.col-md-12
+        h1 = t '.title'
     div.row
-      table.table.table-hover.center-content
-        thead
-          tr
-            th scope="col"  = t '.name'
-            th scope="col"  = t '.type'
-            th scope="col"  = t '.balance'
-            th scope="col"  = t '.actions'
-        tbody
-          - @accounts.each do |account|
+      div.col-md-12.right
+        = link_to (fa_icon 'plus'), new_account_path, class: 'btn btn-success'
+    div.row
+      div.col-md-12
+        table.table.table-hover.center-content
+          thead
             tr
-              td = account.name
-              td = Account.translated_account_type(account.account_type)
-              td = account.balance
-              td
-                = link_to (fa_icon 'eye'), account_path(account), class: 'btn btn-info'
-                = link_to (fa_icon 'edit'), edit_account_path(account), class: 'btn btn-success'
-                = link_to (fa_icon 'trash'), account_path(account), method: :delete, class: 'btn btn-danger'
+              th scope="col"  = t '.name'
+              th scope="col"  = t '.type'
+              th scope="col"  = t '.balance'
+              th scope="col"  = t '.actions'
+          tbody
+            - @accounts.each do |account|
+              tr
+                td = account.name
+                td = Account.translated_account_type(account.account_type)
+                td = account.balance
+                td
+                  = link_to (fa_icon 'eye'), account_path(account), class: 'btn btn-info'
+                  = link_to (fa_icon 'edit'), edit_account_path(account), class: 'btn btn-success'
+                  = link_to (fa_icon 'trash'), account_path(account), method: :delete, class: 'btn btn-danger'
   div.col-md-3
     = render 'common/sidebar'
