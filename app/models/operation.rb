@@ -8,7 +8,7 @@ class Operation < ApplicationRecord
 
   belongs_to :account
   belongs_to :target_account, class_name: 'Account', foreign_key: 'target_account_id', optional: true
-  belongs_to :category, optional: true
+  belongs_to :category, optional: true, counter_cache: true
   belongs_to :user
   belongs_to :operation, optional: true, dependent: :destroy
   belongs_to :template_operation, optional: true
