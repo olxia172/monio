@@ -4,7 +4,7 @@
       - if @budget.present?
         h3
           = @budget.name
-          = link_to (fa_icon 'edit'), budget_path(@budget), class: 'btn btn-success'
+          = link_to (fa_icon 'eye'), budget_path(@budget), class: 'btn btn-info'
         table.table.table-hover
           tbody
             tr
