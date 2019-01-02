@@ -5,7 +5,8 @@ pl:
       name: Nazwa
       comment: Komentarz
       actions: Akcje
-      sum: Suma zaplanowanych wydatków
+      expenses: Wydatki
+      income: Dochód
     show:
       settings: Ustawienia
       amount: Przewidywana ilość
