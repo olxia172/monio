@@ -15,6 +15,7 @@ pl:
     setting: ustawienie
     category: kategorię
     budget: budżet
+    budget_entry: rekord
   navbar:
     dashboard: Podsumowanie
     accounts: Konta

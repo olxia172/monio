@@ -1,0 +1,22 @@
+div.row
+  div.col-md-9
+    div.row.operations
+      div.col-md-12
+        h1 = t '.title'
+        h3 = @budget.name
+    div.row
+      div.col-md-12
+        table.table.table-hover
+          thead
+            tr
+              th scope="col" = t '.name'
+              th scope="col" = t '.value'
+              th scope="col" style='width: 20%' = t '.actions'
+          tbody
+            - @budget_entries.each do |entry|
+              tr
+                td = entry.setting.name
+                td = best_in_place entry, :value, url: budget_budget_entry_path(entry.budget, entry), class: "#{value_sign(entry.value)} right"
+                td = link_to (fa_icon 'trash'), budget_budget_entry_path(entry.budget, entry), method: :delete, class: 'btn btn-danger'
+  div.col-md-3
+    = render 'common/sidebar'

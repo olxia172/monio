@@ -1,0 +1,7 @@
+pl:
+  budget_entries:
+    index:
+      title: Wpisy budżetu
+      name: Nazwa
+      actions: Akcje
+      value: Ilość

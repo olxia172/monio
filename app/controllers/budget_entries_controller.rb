@@ -5,9 +5,9 @@ class BudgetEntriesController < ApplicationController
 
   def index
     @budget_entries = if params[:budget_id].present?
-                        @budget.budget_entries
+                        @budget.budget_entries.includes(:setting)
                       else
-                        BudgetEntry.all
+                        BudgetEntry.all.includes(:setting)
                       end
   end
 
@@ -22,7 +22,7 @@ class BudgetEntriesController < ApplicationController
   end
 
   def update
-    if @budget_entry.update(budget_params)
+    if @budget_entry.update(budget_entry_params)
       redirect_to budget_budget_entries_path(@budget),
                   notice: create_notice(action: 'update', model: 'budget_entry')
     else
@@ -50,6 +50,6 @@ class BudgetEntriesController < ApplicationController
   end
 
   def budget_entry_params
-    params.permit!
+    params.require(:budget_entry).permit!
   end
 end

@@ -4,6 +4,9 @@ div.row
       div.col-md-12
         h1 = @budget.name
     div.row
+      div.col-md-12.right
+        = link_to (fa_icon 'edit'), budget_budget_entries_path(@budget), class: 'btn btn-success'
+    div.row
       div.col-md-12
         table.table.table-hover
             tbody
@@ -18,7 +21,8 @@ div.row
                       - @entries&.each do |entry|
                         tr
                           td = entry.setting.name
-                          td = entry.value
+                          td class="#{value_sign(entry.value)} right"
+                            = entry.value
                 td style='align: center; vertical-align: middle'
                   = pie_chart @entries.map { |e| [e.setting.name, (e.value_cents / 100.00)] }
   div.col-md-3
