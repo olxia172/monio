@@ -26,7 +26,11 @@ class OperationsController < ApplicationController
     @operation = current_user.operations.new(operation_params)
 
     if @operation.save
-      redirect_to operations_path, notice: create_notice(action: 'create', model: 'operation')
+      if @operation.template_operation.present?
+        redirect_to template_operations_path, notice: create_notice(action: 'create', model: 'operation')
+      else
+        redirect_to operations_path, notice: create_notice(action: 'create', model: 'operation')
+      end
     else
       flash.now.alert = t('errors.sth_went_wrong_with_form')
       render :new
