@@ -11,9 +11,11 @@ class OperationsController < ApplicationController
 
   def new
     @operation = if @template_operation.present?
+                   params = @template_operation.attributes.except('planned_at', 'name')
+                              .merge({comment: @template_operation.name})
                    @template_operation
                      .operations
-                     .new(@template_operation.attributes.except('planned_at', 'name'))
+                     .new(params)
                  else
                    Operation.new(operation_params)
                  end
@@ -24,7 +26,11 @@ class OperationsController < ApplicationController
     @operation = current_user.operations.new(operation_params)
 
     if @operation.save
-      redirect_to operations_path, notice: create_notice(action: 'create', model: 'operation')
+      if @operation.template_operation.present?
+        redirect_to template_operations_path, notice: create_notice(action: 'create', model: 'operation')
+      else
+        redirect_to operations_path, notice: create_notice(action: 'create', model: 'operation')
+      end
     else
       flash.now.alert = t('errors.sth_went_wrong_with_form')
       render :new
@@ -56,7 +62,7 @@ class OperationsController < ApplicationController
 
   def set_operation
     @operation = Operation.find(params[:id])
-  end  
+  end
 
   def set_template_operation
     @template_operation = TemplateOperation.find(params[:template_operation_id]) if params[:template_operation_id].present?
