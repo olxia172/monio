@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_02_093030) do
+ActiveRecord::Schema.define(version: 2019_01_05_154337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,22 @@ ActiveRecord::Schema.define(version: 2019_01_02_093030) do
     t.bigint "setting_id"
     t.integer "operations_count", default: 0
     t.index ["setting_id"], name: "index_categories_on_setting_id"
+  end
+
+  create_table "goals", force: :cascade do |t|
+    t.string "name"
+    t.integer "final_value_cents", default: 0, null: false
+    t.string "final_value_currency", default: "PLN", null: false
+    t.integer "paid_value_cents", default: 0, null: false
+    t.string "paid_value_currency", default: "PLN", null: false
+    t.bigint "users_id"
+    t.bigint "accounts_id"
+    t.bigint "template_operations_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["accounts_id"], name: "index_goals_on_accounts_id"
+    t.index ["template_operations_id"], name: "index_goals_on_template_operations_id"
+    t.index ["users_id"], name: "index_goals_on_users_id"
   end
 
   create_table "operations", force: :cascade do |t|
