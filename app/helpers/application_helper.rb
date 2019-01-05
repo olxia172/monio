@@ -8,4 +8,8 @@ module ApplicationHelper
       'negative'
     end
   end
+
+  def sum_of_savings
+    Account.where(account_type: :savings).sum(:balance_cents) / 100.00
+  end
 end

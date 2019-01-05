@@ -2,6 +2,7 @@ pl:
   accounts:
     index:
       title: Twoje konta
+      sum_of_savings: Suma oszczędności
       name: Nazwa
       type: Typ konta
       balance: Saldo
