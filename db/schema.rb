@@ -59,12 +59,12 @@ ActiveRecord::Schema.define(version: 2019_01_05_154337) do
     t.string "final_value_currency", default: "PLN", null: false
     t.integer "paid_value_cents", default: 0, null: false
     t.string "paid_value_currency", default: "PLN", null: false
-    t.bigint "users_id"
-    t.bigint "template_operations_id"
+    t.bigint "user_id"
+    t.bigint "template_operation_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["template_operations_id"], name: "index_goals_on_template_operations_id"
-    t.index ["users_id"], name: "index_goals_on_users_id"
+    t.index ["template_operation_id"], name: "index_goals_on_template_operation_id"
+    t.index ["user_id"], name: "index_goals_on_user_id"
   end
 
   create_table "operations", force: :cascade do |t|

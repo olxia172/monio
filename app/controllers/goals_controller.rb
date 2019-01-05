@@ -9,14 +9,14 @@ class GoalsController < ApplicationController
   end
 
   def new
-    @goal = Goal.new
+    @goal = current_user.goals.new
   end
 
   def edit
   end
 
   def create
-    @goal = Goal.new(goal_params)
+    @goal = current_user.goals.new(goal_params)
 
     if @goal.save
       redirect_to @goal, notice: create_notice(action: 'create', model: 'goal')

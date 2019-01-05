@@ -16,6 +16,9 @@ pl:
       template_operation:
         create: Dodaj
         update: Zakutalizuj
+      goal:
+        create: Dodaj
+        update: Zakutalizuj
   simple_form:
     "yes": Tak
     "no": Nie

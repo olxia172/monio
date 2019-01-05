@@ -1,9 +1,6 @@
 = simple_form_for(@goal) do |f|
-  = f.error_notification
-  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
-
-  .form-inputs
-    = f.input :name
-
-  .form-actions
-    = f.button :submit
+   = f.input :name
+   = f.input :final_value
+   = f.association :template_operation
+   = f.input :paid_value
+   = f.button :submit, class: 'btn btn-success'

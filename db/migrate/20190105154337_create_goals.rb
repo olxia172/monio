@@ -4,8 +4,8 @@ class CreateGoals < ActiveRecord::Migration[5.2]
       t.string :name
       t.monetize :final_value
       t.monetize :paid_value
-      t.references :users
-      t.references :template_operations
+      t.references :user
+      t.references :template_operation
 
       t.timestamps
     end
