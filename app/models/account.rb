@@ -7,7 +7,6 @@ class Account < ApplicationRecord
   belongs_to :user
   has_many :operations, dependent: :destroy
   has_many :template_operations, dependent: :destroy
-  has_many :goals, dependent: :destroy
 
   monetize :balance_cents
 

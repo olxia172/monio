@@ -60,11 +60,9 @@ ActiveRecord::Schema.define(version: 2019_01_05_154337) do
     t.integer "paid_value_cents", default: 0, null: false
     t.string "paid_value_currency", default: "PLN", null: false
     t.bigint "users_id"
-    t.bigint "accounts_id"
     t.bigint "template_operations_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["accounts_id"], name: "index_goals_on_accounts_id"
     t.index ["template_operations_id"], name: "index_goals_on_template_operations_id"
     t.index ["users_id"], name: "index_goals_on_users_id"
   end
