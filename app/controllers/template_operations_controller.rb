@@ -4,7 +4,7 @@ class TemplateOperationsController < ApplicationController
 
   def index
     @q = TemplateOperation.ransack(params[:q])
-    @template_operations = @q.result.includes(:category, :account)
+    @template_operations = @q.result.includes(:category, :account).sort { |a, b| a.paid_this_month == b.paid_this_month ? a.name <=> b.name : a.paid_this_month <=> b.paid_this_month }
   end
 
   def show; end

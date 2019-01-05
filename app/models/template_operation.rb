@@ -38,6 +38,10 @@ class TemplateOperation < ApplicationRecord
     end
   end
 
+  def paid_this_month
+    paid_this_month? ? 1 : 0
+  end
+
   def paid_this_month?
     operations.where(created_at: Date.current.all_month).any?
   end
