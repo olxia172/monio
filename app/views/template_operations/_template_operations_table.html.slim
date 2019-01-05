@@ -25,7 +25,7 @@ div.row
             - else
               = fa_icon 'times-circle', class: 'btn btn-danger'
 
-          td = link_to template_operation.account.name, account_path(template_operation.account)
+          td = link_to template_operation.account.name, template_operations_path(q: { account_id_eq: template_operation.account.id })
           td
             = link_to (fa_icon 'edit'), edit_template_operation_path(template_operation), class: 'btn btn-success'
             = link_to (fa_icon 'trash'), template_operation_path(template_operation), method: :delete, class: 'btn btn-danger'
