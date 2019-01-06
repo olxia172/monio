@@ -13,12 +13,12 @@ div.row
     tbody
       - @template_operations.each do |template_operation|
         tr
-          td = template_operation.name
+          td = best_in_place template_operation, :name, ok_button: 'OK', cancel_button: 'Anuluj', ok_button_class: 'btn btn-success', cancel_button_class: 'btn btn-danger'
           td = link_to "#{template_operation.category&.name}", template_operations_path(q: { category_id_eq: template_operation.category&.id })
           td class="#{template_operation.operation_type} right"
             = number_to_currency(template_operation.value, unit: '')
           td = template_operation.planned_at.to_s + t('.day_of_month')
-          td = template_operation.comment
+          td = best_in_place template_operation, :comment, as: :textarea, ok_button: 'OK', cancel_button: 'Anuluj', ok_button_class: 'btn btn-success', cancel_button_class: 'btn btn-danger'
           td
             - if template_operation.paid_this_month?
               = fa_icon 'check-circle', class: 'btn btn-success'

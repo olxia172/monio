@@ -16,6 +16,7 @@ pl:
     category: kategorię
     budget: budżet
     budget_entry: rekord
+    goal: cel
   navbar:
     dashboard: Podsumowanie
     accounts: Konta
@@ -24,6 +25,7 @@ pl:
     template_operations: Szablony operacji
     budget: Budżet
     categories: Kategorie
+    goals: Cele
     budget_settings: Ustawienia budżetu
     create_budget: Utwórz budżet
     sign_in: Zaloguj się

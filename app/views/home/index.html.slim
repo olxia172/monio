@@ -5,28 +5,33 @@
         h3
           = @budget.name
           = link_to (fa_icon 'eye'), budget_path(@budget), class: 'btn btn-info'
-        table.table.table-hover
-          tbody
-            tr
-              td style='width: 40%'
-                table.table.table-hover
-                  thead
-                    tr
-                      th scope="col" = t '.settings'
-                      th scope="col" = t '.amount'
-                  tbody
-                    - @entries&.each do |entry|
-                      tr
-                        td = entry.setting.name
-                        td = entry.value
-              td style='align: center; vertical-align: middle'
-                = pie_chart @entries.map { |e| [e.setting.name, (e.value_cents / 100.00)] }
         div.row
-          h1 = t '.chart_title'
-          = column_chart @chart_data, stacked: true, xtitle: (t '.chart.xtitle'), ytitle: (t '.chart.ytitle'), height: '500px', colors: ["#007bff", "#20c997", "#fd7e14"]
+          div.col-md-12
+            table.table.table-hover
+              tbody
+                tr
+                  td style='width: 40%'
+                    table.table.table-hover
+                      thead
+                        tr
+                          th scope="col" = t '.settings'
+                          th scope="col" = t '.amount'
+                      tbody
+                        - @entries&.each do |entry|
+                          tr
+                            td = entry.setting.name
+                            td = entry.value
+                  td style='align: center; vertical-align: middle'
+                    = pie_chart @entries.map { |e| [e.setting.name, (e.value_cents / 100.00)] }
         div.row
-          h1 = t '.chart_title2'
-          = line_chart @savings_prognosis
+          div.col-md-12
+            h1 = t '.chart_title'
+            = column_chart @chart_data, stacked: true, xtitle: (t '.chart.xtitle'), ytitle: (t '.chart.ytitle'), height: '500px', colors: ["#007bff", "#20c997", "#fd7e14"]
+        div.row
+          div.col-md-12
+            h1 = t '.chart_title2'
+            h5 = (t('.sum_of_savings')) + ': ' + sum_of_savings.to_s
+            = line_chart @savings_prognosis
     div.col-md-3
       = render 'common/sidebar'
 - else

@@ -1,0 +1,18 @@
+pl:
+  activerecord:
+    models:
+      goal:
+        one: Cel
+        other: Cele
+    attributes:
+      goal:
+        name: Nazwa
+        final_value_cents: Do zapłacenia
+        paid_value_cents: Zapłacono
+        numer_of_operations: Ilość operacji do spłaty
+    errors:
+      models:
+        goal:
+          attributes:
+            name:
+              blank: nie może być pusta

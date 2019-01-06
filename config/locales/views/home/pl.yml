@@ -11,3 +11,4 @@ pl:
       chart:
         xtitle: Ustawienia budżetu
         ytitle: Suma wydatków
+      sum_of_savings: Suma oszczędności

@@ -1,0 +1,11 @@
+pl:
+  goals:
+    index:
+      title: Twoje cele
+      name: Nazwa
+      final_value: Całość
+      paid_value: Zapłacono
+      left_to_pay: Do zapłacenia
+      number_of_operations: Pozostało operacji
+      operations_count: Wykonane operacje
+      are_you_sure: 'Jesteś pewny?'

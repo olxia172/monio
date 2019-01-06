@@ -1,0 +1,7 @@
+= simple_form_for(@goal) do |f|
+   = f.input :name
+   = f.input :final_value
+   = f.association :template_operation
+   = f.input :paid_value
+   = f.input :number_of_operations
+   = f.button :submit, class: 'btn btn-success'
