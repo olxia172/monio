@@ -6,24 +6,36 @@ div.row
     div.row
       div.col-md-12.right
         = link_to (fa_icon 'plus'), new_goal_path, class: 'btn btn-success'
-    / div.row
-    /   div.col-md-12
-    /     table.table.table-hover.center-content
-    /       thead
-    /         tr
-    /           th scope="col"  = t '.name'
-    /           th scope="col"  = t '.type'
-    /           th scope="col"  = t '.balance'
-    /           th scope="col"  = t '.actions'
-    /       tbody
-    /         - @accounts.each do |account|
-    /           tr
-    /             td = account.name
-    /             td = Account.translated_account_type(account.account_type)
-    /             td = account.balance
-    /             td
-    /               = link_to (fa_icon 'eye'), account_path(account), class: 'btn btn-info'
-    /               = link_to (fa_icon 'edit'), edit_account_path(account), class: 'btn btn-success'
-    /               = link_to (fa_icon 'trash'), account_path(account), method: :delete, class: 'btn btn-danger'
+    - @goals.each do |goal|
+      div.row
+        div.col-md-12
+          div.row
+            div.col-md-12
+              table.table.table-hover.center-content
+                thead
+                  tr
+                    th scope="col"  = t '.name'
+                    th scope="col"  = t '.final_value'
+                    th scope="col"  = t '.paid_value'
+                    th scope="col"  = t '.left_to_pay'
+                    th scope="col"  = t '.operations_count'
+                    th scope="col"  = t '.number_of_operations'
+                tbody
+                  tr
+                    td = goal.name
+                    td = goal.final_value
+                    td = goal.paid_value
+                    td = (goal.final_value - goal.paid_value)
+                    td = goal.operations.count
+                    td = goal.number_of_operations
+          div.row
+            div.col-md-12
+              div.progress
+                div.progress-bar class="#{set_class(goal)}" style="width: #{goal.percentage_paid}%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="#{goal.percentage_paid}" role="progressbar"
+                  = goal.percentage_paid.to_s + '%'
+          div.row
+            div.col-md-12.right.space-under
+              = link_to (fa_icon 'edit'), edit_goal_path(goal), class: 'btn btn-success'
+              = link_to (fa_icon 'trash'), goal_path(goal), method: :delete, data: { confirm: (t'.are_you_sure') }, class: 'btn btn-danger'
   div.col-md-3
     = render 'common/sidebar'

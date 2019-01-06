@@ -19,7 +19,7 @@ class GoalsController < ApplicationController
     @goal = current_user.goals.new(goal_params)
 
     if @goal.save
-      redirect_to @goal, notice: create_notice(action: 'create', model: 'goal')
+      redirect_to goals_path, notice: create_notice(action: 'create', model: 'goal')
     else
       flash.now.alert = t('errors.sth_went_wrong_with_form')
       render :new
@@ -28,7 +28,7 @@ class GoalsController < ApplicationController
 
   def update
     if @goal.update(goal_params)
-      redirect_to @goal, notice: create_notice(action: 'update', model: 'goal')
+      redirect_to goals_path, notice: create_notice(action: 'update', model: 'goal')
     else
       flash.now.alert = t('errors.sth_went_wrong_with_form')
       render :edit

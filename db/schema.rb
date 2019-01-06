@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 2019_01_05_154337) do
     t.string "paid_value_currency", default: "PLN", null: false
     t.bigint "user_id"
     t.bigint "template_operation_id"
+    t.integer "number_of_operations"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["template_operation_id"], name: "index_goals_on_template_operation_id"
